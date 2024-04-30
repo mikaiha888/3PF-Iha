@@ -6,29 +6,38 @@
       </div>
       <div class="detail-header">
         <h2 appHeaderFontSize>
-          {{ student && ([student.firstName, student.lastName] | displayFullname) }}
+          {{
+            student && ([student.firstName, student.lastName] | displayFullname)
+          }}
         </h2>
         <span>{{ student?.email }}</span>
       </div>
       <div class="detail-options">
         <button mat-icon-button disabled>
-            <mat-icon>description</mat-icon>
+          <mat-icon>description</mat-icon>
         </button>
         <button mat-icon-button (click)="student && openDialog(student)">
-            <mat-icon>edit</mat-icon>
+          <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="student && (student.id)">
-            <mat-icon>delete</mat-icon>
+        <button mat-icon-button (click)="(student && student.id)">
+          <mat-icon>delete</mat-icon>
         </button>
       </div>
     </div>
     <div class="personal-information">
-            <h2 appHeaderFontSize>Información Personal</h2>
-            <p><span>Cel:</span>{{student?.cel}}</p>
-            <p><span>Fecha de inscripción:</span>{{student?.createdAt | date}}</p>
-            <p><span>Curso:</span>{{student?.course}}</p>
-            <p><span>Clase:</span>{{student?.classNumber}}</p>
-            <p><span>Estado actual:</span>{{student?.isApproved ? 'Aprobado' : 'Desaprobado'}}</p>
+      <h2 appHeaderFontSize>Información Personal</h2>
+      <div>
+        <p><span>Curso:</span>{{ student?.course }}</p>
+        <p><span>Clase:</span>{{ student?.classNumber }}</p>
+        <p>
+          <span>Estado actual:</span
+          >{{ student?.isApproved ? "Aprobado" : "Desaprobado" }}
+        </p>
+      </div>
+      <div>
+        <p><span>Cel:</span>{{ student?.cel }}</p>
+        <p><span>Fecha de inscripción:</span>{{ student?.createdAt | date }}</p>
+      </div>
     </div>
   </div>
 </div>

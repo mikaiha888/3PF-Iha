@@ -26,10 +26,7 @@ export class StudentTableComponent {
       next: (response) => {
         this.students = this.students.map((student) => 
           student.id === editingStudent.id 
-            ? { ...student, ...response,
-              classNumber: response.course !== student.course && undefined,
-              isApproved: response.course !== student.course &&  undefined,
-            }
+            ? { ...student, ...response}
             : student
         );
       },

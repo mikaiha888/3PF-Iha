@@ -1,7 +1,7 @@
 <div class="px-5 py-4">
     <h3 class="mb-5 fs-4 fw-medium">Crear Estudiante</h3>
     <form class="row" [formGroup]="studentForm">
-      <mat-form-field appearance="outline" class="top-fields col-6">
+      <mat-form-field appearance="outline" class="col-6">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="firstName" />
         <mat-error>{{
@@ -9,7 +9,7 @@
         }}</mat-error>
       </mat-form-field>
   
-      <mat-form-field appearance="outline" class="top-fields col-6">
+      <mat-form-field appearance="outline" class="col-6">
         <mat-label>Apellido</mat-label>
         <input matInput formControlName="lastName" />
         <mat-error>{{
@@ -35,19 +35,31 @@
   
       <mat-form-field appearance="outline" class="col-6">
         <mat-label>Seleccionar curso</mat-label>
-        <mat-select formControlName="course">
-          <mat-option value="Full Stack Development">Full Stack Development</mat-option>
-          <mat-option value="Frontend Development">Frontend Development</mat-option>
-          <mat-option value="UX Design">UX Design</mat-option>
-          <mat-option value="Marketing">Marketing</mat-option>
-          <mat-option value="Data Science">Data Science</mat-option>
+        <mat-select formControlName="course" [(ngModel)]="optionSelected" (ngModelChange)="changeValue()">
+          <mat-option *ngFor="let option of courseOptions" [value]="option.courseName">{{ option.courseName }}</mat-option>
         </mat-select>
         <mat-error>{{
           studentForm.get("course")?.errors | formFieldValidations : "course"
         }}</mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-3">
+        <mat-label>Valores disponibles</mat-label>
+        <mat-select formControlName="classNumber" [(ngModel)]="valueSelected">
+          <mat-option *ngFor="let value of validatedValues" [value]="value">{{ value }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3">
+        <mat-label>Seleccionar estado</mat-label>
+        <mat-select formControlName="isApproved">
+          <mat-option value="{{undefined}}">Seleccionar estado</mat-option>
+          <mat-option value="{{true}}">Aprobado</mat-option>
+          <mat-option value="{{false}}">Desaprobado</mat-option>
+        </mat-select>
+      </mat-form-field>
     </form>
-    <div mat-dialog-actions class="p-0 mt-2 d-flex justify-content-end gap-2">
+    <div mat-dialog-actions class="pt-5 mt-2 border-top d-flex justify-content-end gap-2">
       <button class="rounded-2 fs-6 fw-medium cancel-button" mat-dialog-close>
         Cancelar
       </button>

@@ -33,8 +33,6 @@ export class StudentDetailComponent implements OnInit {
         this.student = {
           ...this.student,
           ...response,
-          classNumber: response.course !== this.student?.course && undefined,
-          isApproved: response.course !== this.student?.course && undefined,
         };
       },
     });

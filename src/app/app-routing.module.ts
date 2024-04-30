@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'inscriptions',
-    loadChildren: () => import('./layouts/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./layouts/inscrptions/inscrptions.module').then((m) => m.InscrptionsModule),
   },
   {
     path: '',

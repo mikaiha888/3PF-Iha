@@ -8,6 +8,7 @@ import { StudentListHeaderComponent } from './components/student-list-header/stu
 import { StudentListComponent } from './pages/student-list/student-list.component';
 import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
 import { StudentTableComponent } from './components/student-table/student-table.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { StudentTableComponent } from './components/student-table/student-table.
     StudentListComponent,
     StudentDetailComponent,
   ],
-  imports: [CommonModule, StudentsRoutingModule, SharedModule],
+  imports: [CommonModule, StudentsRoutingModule, SharedModule, FormsModule],
   exports: [StudentTableComponent, StudentListHeaderComponent]
 })
 export class StudentsModule {}
