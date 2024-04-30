@@ -1,0 +1,11 @@
+<app-student-list-header
+  title="Lista de estudiantes"
+  subtitle="(Total: {{ students.length }} alumnos)"
+  (sort)="sortStudents()"
+  (add)="openDialog()"
+/>
+
+<div class="student-table p-4 border border-1 rounded rounded-4">
+  <mat-spinner *ngIf="loading" class="spinner-container" />
+  <app-student-table *ngIf="!loading" [students]="students" />
+</div>

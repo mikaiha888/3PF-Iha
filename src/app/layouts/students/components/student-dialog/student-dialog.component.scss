@@ -1,0 +1,26 @@
+.top-fields {
+    margin-bottom: 2rem;
+}
+
+.cancel-button {
+    padding: .75rem 1.75rem;
+    color: rgb(55, 48, 163, 0.95);
+    background-color: white;
+    cursor: pointer;
+}
+
+.save-button {
+    padding: .75rem 1.75rem;
+    color: white;
+    background-color: rgb(55, 48, 163, 0.95);
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    color: rgb(55, 48, 163);
+}
+
+.save-button:hover {
+    color: white;
+    background-color: rgb(55, 48, 163);
+}

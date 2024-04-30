@@ -1,0 +1,24 @@
+<div class="list-header-container">
+  <h2 appHeaderFontSize>{{ title }}</h2>
+  <span class="total-students">{{ subtitle }}</span>
+  <div class="filter-sort">
+    <mat-icon>filter_list</mat-icon>
+    <mat-icon
+      (click)="sortStudents()"
+      [ngClass]="isSortAZ ? 'sort-active' : ''"
+    >
+      sort_by_alpha
+    </mat-icon>
+  </div>
+
+  <div class="d-flex align-items-center gap-5">
+    <div
+      (click)="openDialog()"
+      color="primary"
+      class="add-button"
+    >
+      <mat-icon>add</mat-icon>
+      <span>Añadir estudiante</span>
+    </div>
+  </div>
+</div>

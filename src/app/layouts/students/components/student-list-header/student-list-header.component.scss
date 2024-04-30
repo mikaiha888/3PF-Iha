@@ -1,0 +1,64 @@
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
+.list-header-container {
+  margin: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.class-button {
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: rgb(55, 48, 163, 0.95);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 2rem;
+  cursor: pointer;
+}
+
+.total-students {
+  margin: .3rem 0 0 1rem;
+  color: rgba(75, 85, 99, 0.5);
+  font-weight: 600;
+}
+
+.filter-sort {
+  margin-right: 1.5rem;
+  color: rgba(75, 85, 99, 0.5);
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  flex: 1 1 0;
+  cursor: pointer;
+}
+
+.filter-sort mat-icon {
+  background-color: white;
+  font-size: 22px;
+}
+
+.sort-active {
+  color: rgb(55, 48, 163, 0.95);
+}
+
+.add-button {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  color: white;
+  background-color: rgb(55, 48, 163, 0.95);
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 2rem;
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: rgb(55 48 163);
+}

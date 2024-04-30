@@ -1,0 +1,58 @@
+<div class="px-5 py-4">
+    <h3 class="mb-5 fs-4 fw-medium">Crear Estudiante</h3>
+    <form class="row" [formGroup]="studentForm">
+      <mat-form-field appearance="outline" class="top-fields col-6">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="firstName" />
+        <mat-error>{{
+          studentForm.get("firstName")?.errors | formFieldValidations : "name"
+        }}</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="top-fields col-6">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="lastName" />
+        <mat-error>{{
+          studentForm.get("lastName")?.errors | formFieldValidations : "name"
+        }}</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error>{{
+          studentForm.get("email")?.errors | formFieldValidations : "email"
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Cel</mat-label>
+        <input matInput formControlName="cel" />
+        <mat-error>{{
+          studentForm.get("cel")?.errors | formFieldValidations : "cel"
+        }}</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Seleccionar curso</mat-label>
+        <mat-select formControlName="course">
+          <mat-option value="Full Stack Development">Full Stack Development</mat-option>
+          <mat-option value="Frontend Development">Frontend Development</mat-option>
+          <mat-option value="UX Design">UX Design</mat-option>
+          <mat-option value="Marketing">Marketing</mat-option>
+          <mat-option value="Data Science">Data Science</mat-option>
+        </mat-select>
+        <mat-error>{{
+          studentForm.get("course")?.errors | formFieldValidations : "course"
+        }}</mat-error>
+      </mat-form-field>
+    </form>
+    <div mat-dialog-actions class="p-0 mt-2 d-flex justify-content-end gap-2">
+      <button class="rounded-2 fs-6 fw-medium cancel-button" mat-dialog-close>
+        Cancelar
+      </button>
+      <button class="rounded-2 fs-6 fw-medium save-button" (click)="onSave()">
+        Guardar
+      </button>
+    </div>
+  </div>

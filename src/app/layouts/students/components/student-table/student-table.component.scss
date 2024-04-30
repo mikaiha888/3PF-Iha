@@ -1,0 +1,62 @@
+.td-class {
+  text-align: end;
+}
+
+.view-detail {
+  cursor: pointer;
+}
+
+.action-button {
+  margin-left: 0.75rem;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.action-button span {
+  letter-spacing: 0;
+}
+
+.action-button:hover, .view-detail:hover {
+  color: rgb(55, 48, 163, 0.95);
+}
+
+.sm-cell {
+  width: 10%;
+}
+
+.md-cell {
+  width: 15%;
+}
+
+.lg-cell {
+  width: 25%;
+}
+
+.xl-cell {
+  width: 30%;
+}
+
+.approved span {
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  background-color: rgb(199 210 254);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.disapproved span {
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  background-color: rgb(209 213 219);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.undefined-case span {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.row-class:hover {
+  background-color: rgb(243 244 246);
+}

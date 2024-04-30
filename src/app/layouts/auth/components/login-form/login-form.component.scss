@@ -1,0 +1,63 @@
+form {
+    margin-top: .25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+}
+
+span {
+    color: rgb(220 38 38);
+}
+
+.input-container {
+    width: 16rem;
+    padding: .75rem;
+    background-color: rgb(243 244 246);
+    display: flex;
+    align-items: center;
+    gap: .50rem;
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    background-color: rgb(243 244 246);
+    font-size: .875rem;
+    line-height: 1.25rem;
+    flex: 1 1 0%;
+}
+
+.input-check {
+    width: 16rem;
+    margin-bottom: .75rem;
+    color: rgb(107 114 128);
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-check label {
+    font-size: .75rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+.input-check a {
+    font-size: .75rem;
+    line-height: 1rem;
+}
+
+form button {
+    width: 16rem;
+    padding: .5rem 0;
+    border-radius: 9999px;
+    color: white;
+    background-color: rgb(55, 48, 163);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    display: inline-block;
+    cursor: pointer;
+}
