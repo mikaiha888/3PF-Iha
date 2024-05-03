@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from '../../../../core/models';
-import { StudentsService } from '../../../../core/services/students.service';
+import { Student } from '../../core/models';
+import { StudentsService } from '../../core/services/students.service';
 
 @Component({
-  selector: 'app-student-list',
-  templateUrl: './student-list.component.html',
-  styleUrl: './student-list.component.scss',
+  selector: 'app-students',
+  templateUrl: './students.component.html',
+  styleUrl: './students.component.scss',
 })
-export class StudentListComponent implements OnInit {
+export class StudentsComponent implements OnInit {
   students: Student[] = [];
   loading: boolean = true;
   isSortAZ: boolean = true;
@@ -30,8 +30,8 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  openDialog() {
-    this._students.openDialog().subscribe({
+  addStudent() {
+    this._students.addStudent().subscribe({
       next: (response) => {
         response.id = this.students[this.students.length - 1].id + 1;
         response.createdAt = new Date();

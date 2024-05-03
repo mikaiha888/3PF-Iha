@@ -1,8 +1,33 @@
-<ul class="list-cards">
-  <li *ngFor="let element of list" class="card" [routerLink]="getRoute(element)">
-    <div class="list-header">
-      <h3>{{ element.courseName ? element.courseName : element }}</h3>
-      <mat-icon>chevron_right</mat-icon>
+<ul>
+  <li
+    *ngFor="let element of list"
+    class="list-cards"
+    [routerLink]="getRoute(element)"
+  >
+    <div class="title-top">
+      <span>{{ element.difficulty }}</span>
+      <mat-icon [matMenuTriggerFor]="menu" class="action-button"  (click)="$event.stopPropagation()"
+        >more_horiz</mat-icon
+      >
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Editar curso</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar curso</span>
+        </button>
+      </mat-menu>
+    </div>
+    <div class="title-bot">
+      <h3>{{ element.name }}</h3>
+      <span [ngClass]="element.difficulty">{{ element.difficulty }}</span>
+    </div>
+    <div class="detail">
+      <p>
+        {{ element.description }}
+      </p>
     </div>
   </li>
 </ul>

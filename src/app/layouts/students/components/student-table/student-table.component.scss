@@ -8,11 +8,7 @@
 
 .action-button {
   margin-left: 0.75rem;
-  letter-spacing: 0;
   cursor: pointer;
-}
-.action-button span {
-  letter-spacing: 0;
 }
 
 .action-button:hover, .view-detail:hover {
@@ -20,35 +16,52 @@
 }
 
 .sm-cell {
-  width: 10%;
-}
-
-.md-cell {
   width: 15%;
 }
 
+
+.md-cell {
+  width: 20%;
+}
+
 .lg-cell {
-  width: 25%;
+  width: 23%;
 }
 
 .xl-cell {
-  width: 30%;
+  width: 27%;
 }
 
-.approved span {
+.courses {
   padding: 0.2rem 0.5rem;
+  margin-right: .5rem;
   border-radius: 9999px;
-  background-color: rgb(199 210 254);
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.disapproved span {
-  padding: 0.2rem 0.5rem;
-  border-radius: 9999px;
-  background-color: rgb(209 213 219);
-  font-size: 0.75rem;
-  font-weight: 600;
+.full-stack-dev {
+  background-color: rgb(254 226 226);
+}
+
+.front-dev {
+  background-color: rgb(219 234 254);
+}
+
+.back-dev {
+  background-color: rgb(236 252 203);
+}
+
+.ux {
+  background-color: rgb(237 233 254);
+}
+
+.marketing {
+  background-color: rgb(255 237 213);
+}
+
+.data {
+  background-color: rgb(220 252 231);
 }
 
 .undefined-case span {

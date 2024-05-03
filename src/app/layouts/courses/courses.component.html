@@ -1,0 +1,9 @@
+<app-list-header
+  title="Lista de cursos"
+  subtitle="(Total: {{ course.length }} alumnos)"
+  span="curso"
+  (sort)="sortCourses()"
+  (add)="addCourse()"
+/>
+
+<app-list-cards [list]="courses"></app-list-cards>

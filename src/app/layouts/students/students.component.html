@@ -1,8 +1,9 @@
-<app-student-list-header
+<app-list-header
   title="Lista de estudiantes"
   subtitle="(Total: {{ students.length }} alumnos)"
+  span="estudiante"
   (sort)="sortStudents()"
-  (add)="openDialog()"
+  (add)="addStudent()"
 />
 
 <div class="student-table p-4 border border-1 rounded rounded-4">

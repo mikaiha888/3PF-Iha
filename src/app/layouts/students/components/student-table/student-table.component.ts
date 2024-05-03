@@ -13,7 +13,7 @@ export class StudentTableComponent {
   displayedColumns: string[] = [
     'fullName',
     'email',
-    'isApproved',
+    'courses',
     'createdAt',
     'actions',
   ];
@@ -21,20 +21,25 @@ export class StudentTableComponent {
 
   constructor(private _students: StudentsService) {}
 
-  openDialog(editingStudent: Student): void {
-    this._students.openDialog(editingStudent).subscribe({
+  updateStudent(editingStudent: Student): void {
+    this._students.updateStudent(editingStudent).subscribe({
       next: (response) => {
         this.students = this.students.map((student) => 
           student.id === editingStudent.id 
-            ? { ...student, ...response}
+            ? { ...student, ...response, course: {
+              courseId: response.course.id,
+              name: response.course.name,
+              classNumber: response.classNumber,
+              isApproved: response.isApproved,
+            }}
             : student
         );
       },
     });
   }
 
-  onDelete(id: number): void {
-    this._students.onDelete(id).subscribe((updatedStudents) => {
+  deleteStudent(id: number): void {
+    this._students.deleteStudent(id).subscribe((updatedStudents) => {
       this.students = updatedStudents;
     });
   }

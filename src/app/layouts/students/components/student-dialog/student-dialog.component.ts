@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Course, Student } from '../../../../core/models';
+import { Class, Course, Student } from '../../../../core/models';
 import { CoursesService } from '../../../../core/services/courses.service';
+import { ClassesService } from '../../../../core/services/classes.service';
 
 @Component({
   selector: 'app-student-dialog',
@@ -13,12 +14,13 @@ export class StudentDialogComponent implements OnInit {
   studentForm: FormGroup;
   editingStudent?: Student;
   optionSelected: string = '';
-  courseOptions: Course[] = [];
-  valueSelected?: number;
-  validatedValues: number[] = [];
+  courses: Course[] = [];
+  classes: Class[] = [];
+  displayHint: boolean = true;
 
   constructor(
     private _courses: CoursesService,
+    private _classes: ClassesService,
     private formBuilder: FormBuilder,
     private matDialogRef: MatDialogRef<StudentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private originalEditingStudent?: Student
@@ -51,22 +53,71 @@ export class StudentDialogComponent implements OnInit {
         ],
       ],
       cel: ['', [Validators.required, Validators.pattern('[0-9 ]{10}')]],
-      course: ['', [Validators.required]],
-      classNumber: [101],
-      isApproved: [undefined],
+      course: this.formBuilder.group({
+        courseId: [''],
+        name: ['', Validators.required],
+        classNumber: [0],
+        isApproved: [undefined],
+      }),
+    });
+
+    console.log(this.editingStudent);
+
+    console.log({
+      ...this.editingStudent,
+      course: {
+        courseId: this.editingStudent?.course.courseId,
+        name: this.editingStudent?.course.name,
+        classNumber: this.editingStudent?.course.classNumber,
+        isApproved: this.editingStudent?.course.isApproved,
+      },
     });
 
     this.editingStudent &&
       this.studentForm.patchValue({
         ...this.editingStudent,
+        course: {
+          courseId: this.editingStudent.course.courseId,
+          name: this.editingStudent.course.name,
+          classNumber: this.editingStudent.course.classNumber,
+          isApproved: this.editingStudent.course.isApproved,
+        },
       });
   }
 
   ngOnInit(): void {
+    !this.studentForm.get('course')?.get('name')?.value &&
+      this.studentForm.get('course')?.get('classNumber')?.disable();
+
     this._courses.getCourses().subscribe({
-      next: (courses) => this.courseOptions = courses,
-      complete: () => {} 
-    })
+      next: (courses) => (this.courses = courses),
+      complete: () => {},
+    });
+    
+    this.editingStudent &&
+      this._classes
+        .getClassByCourse(this.editingStudent.course.courseId)
+        .subscribe({
+          next: (classes) => (this.classes = classes),
+          complete: () => {},
+        });
+  }
+
+  onCourseChange() {
+    if (this.studentForm.get('course')?.value) {
+      this.studentForm.get('classNumber')?.enable();
+      this.displayHint = false;
+    } else {
+      this.studentForm.get('classNumber')?.disable();
+      this.displayHint = true;
+    }
+  }
+
+  getClassesByCourse(id: number) {
+    this._classes.getClassByCourse(id).subscribe({
+      next: (classes) => (this.classes = classes),
+      complete: () => {},
+    });
   }
 
   onSave() {
@@ -74,14 +125,6 @@ export class StudentDialogComponent implements OnInit {
       this.studentForm.markAllAsTouched();
     } else {
       this.matDialogRef.close(this.studentForm.value);
-    }
-  }
-
-  changeValue() {
-    if (this.optionSelected === 'Full Stack Development') {
-      this.validatedValues = [101, 201];
-    } else {
-      this.validatedValues = [101];
     }
   }
 }

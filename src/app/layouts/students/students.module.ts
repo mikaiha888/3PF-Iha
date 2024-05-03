@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentDialogComponent } from './components/student-dialog/student-dialog.component';
 import { SharedModule } from '../../shared/shared.module';
-import { StudentListHeaderComponent } from './components/student-list-header/student-list-header.component';
-import { StudentListComponent } from './pages/student-list/student-list.component';
+import { StudentsComponent } from './students.component';
 import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
 import { StudentTableComponent } from './components/student-table/student-table.component';
 import { FormsModule } from '@angular/forms';
@@ -14,11 +13,10 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     StudentTableComponent,
     StudentDialogComponent,
-    StudentListHeaderComponent,
-    StudentListComponent,
+    StudentsComponent,
     StudentDetailComponent,
   ],
   imports: [CommonModule, StudentsRoutingModule, SharedModule, FormsModule],
-  exports: [StudentTableComponent, StudentListHeaderComponent]
+  exports: [StudentTableComponent]
 })
 export class StudentsModule {}

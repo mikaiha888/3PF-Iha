@@ -10,11 +10,7 @@ import { Router } from '@angular/router';
 export class ListCardsComponent {
   @Input() list: any[] = [];
 
-  constructor(private _router: Router) {}
-
-  getRoute(element: any): string {  
-    return element.hasOwnProperty('courseName')
-      ? element.courseName.split(' ').join('-').toLocaleLowerCase()
-      : element.toString();
+  getRoute(element: any): string {
+    return element.name.split(' ').join('-').toLocaleLowerCase();
   }
 }

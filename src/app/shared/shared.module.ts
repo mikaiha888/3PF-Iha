@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ListCardsComponent } from './components/list-cards/list-cards.component';
+import { ListHeaderComponent } from './components/list-header/list-header.component';
 
 import { HeaderFontSizeDirective } from './directives/header-font-size.directive';
 import { FormFieldValidationsPipe } from './pipes/form-field-validations.pipe';
@@ -20,7 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-// import { StudentTableComponent } from '../layouts/students/components/student-table/student-table.component';
 
 @NgModule({
   declarations: [
@@ -29,24 +29,27 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DisplayFullnamePipe,
     HeaderFontSizeDirective,
     ListCardsComponent,
+    ListHeaderComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    FormFieldValidationsPipe,
+    DisplayFullnamePipe,
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    // StudentTableComponent
+    MatMenuModule,
   ],
   exports: [
     NavbarComponent,
     ListCardsComponent,
+    ListHeaderComponent,
     HeaderFontSizeDirective,
     FormFieldValidationsPipe,
     DisplayFullnamePipe,
     MatMenuModule,
-    MatTreeModule,
     MatIconModule,
     MatTableModule,
     MatInputModule,

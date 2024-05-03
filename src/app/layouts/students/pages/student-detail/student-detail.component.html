@@ -1,4 +1,4 @@
-<div class="detail-page">
+<!-- <div class="detail-page">
   <div class="detail-base">
     <div class="detail">
       <div class="detail-img">
@@ -16,7 +16,7 @@
         <button mat-icon-button disabled>
           <mat-icon>description</mat-icon>
         </button>
-        <button mat-icon-button (click)="student && openDialog(student)">
+        <button mat-icon-button (click)="student && updateStudent(student)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button (click)="(student && student.id)">
@@ -27,8 +27,7 @@
     <div class="personal-information">
       <h2 appHeaderFontSize>Información Personal</h2>
       <div>
-        <p><span>Curso:</span>{{ student?.course }}</p>
-        <p><span>Clase:</span>{{ student?.classNumber }}</p>
+        <p><span>Curso:</span>{{ student?.courses }}</p>
         <p>
           <span>Estado actual:</span
           >{{ student?.isApproved ? "Aprobado" : "Desaprobado" }}
@@ -40,4 +39,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

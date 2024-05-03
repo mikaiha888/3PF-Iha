@@ -1,9 +1,11 @@
-type CourseName = | 'Full Stack Development'
-| 'Frontend Development'
-| 'Backend Developer'
-| 'UX Design'
-| 'Marketing'
-| 'Data Science';
+import { CourseName } from './course.model';
+
+export type asistingCourse = {
+  courseId: number;
+  name: CourseName;
+  classNumber?: number;
+  isApproved?: boolean;
+};
 
 export interface Student {
   id: number;
@@ -12,7 +14,5 @@ export interface Student {
   email: string;
   cel: number;
   createdAt: Date;
-  course: CourseName;
-  classNumber: number | undefined;
-  isApproved: boolean | undefined;
+  course: asistingCourse;
 }
