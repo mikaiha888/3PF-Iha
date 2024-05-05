@@ -1,9 +1,13 @@
 <app-list-header
   title="Lista de cursos"
-  subtitle="(Total: {{ course.length }} alumnos)"
+  subtitle="(Total: {{ courses.length }} cursos)"
   span="curso"
   (sort)="sortCourses()"
   (add)="addCourse()"
 />
 
-<app-list-cards [list]="courses"></app-list-cards>
+<app-list-cards
+  [list]="courses"
+  (edit)="updateCourse($event)"
+  (delete)="deleteCourse($event)"
+></app-list-cards>

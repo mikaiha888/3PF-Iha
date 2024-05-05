@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../../core/models/course.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-cards',
@@ -9,8 +8,14 @@ import { Router } from '@angular/router';
 })
 export class ListCardsComponent {
   @Input() list: any[] = [];
+  @Output() delete = new EventEmitter;
+  @Output() edit = new EventEmitter;
 
-  getRoute(element: any): string {
-    return element.name.split(' ').join('-').toLocaleLowerCase();
-  }
+  deleting(id: number) {
+    this.delete.emit(id);
+  }  
+
+  editing(element: Course) {
+    this.edit.emit(element);
+  }  
 }

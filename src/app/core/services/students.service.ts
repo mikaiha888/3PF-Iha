@@ -47,7 +47,7 @@ export class StudentsService {
       cel: 5555555551,
       createdAt: new Date(),
       course: {
-        courseId: 6,
+        courseId: 5,
         name: 'Marketing',
         classNumber: 101,
         isApproved: true,
@@ -75,7 +75,7 @@ export class StudentsService {
       cel: 9999999991,
       createdAt: new Date(),
       course: {
-        courseId: 5,
+        courseId: 4,
         name: 'UX Design',
         classNumber: 101,
         isApproved: true,
@@ -101,7 +101,7 @@ export class StudentsService {
     );
   }
 
-  getStudentsById(id: number): Observable<Student | undefined> {
+  getStudentById(id: number): Observable<Student | undefined> {
     return this.getStudents().pipe(
       map((students) => students.find((student) => student.id == id))
     );

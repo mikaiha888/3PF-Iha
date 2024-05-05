@@ -82,7 +82,7 @@
   background-color: white;
   border-radius: 1rem;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
@@ -110,4 +110,15 @@
 .personal-information span {
   margin-right: 1rem;
   font-weight: 700;
+}
+
+.personal-information a {
+  border-bottom: solid 1px black;
+  color: black;
+  cursor: pointer;
+}
+
+.personal-information a:hover {
+  color: rgb(55, 48, 163);
+  border-color: rgb(55, 48, 163);
 }

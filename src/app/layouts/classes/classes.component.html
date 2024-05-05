@@ -1,0 +1,14 @@
+<app-list-header
+  title="Lista de classes"
+  subtitle="(Total: {{ classes.length }} cursos)"
+  span="clase"
+  (sort)="sortClasses()"
+  (add)="addClass()"
+/>
+
+<ul class="class-list">
+    <li *ngFor="let class of classes" [routerLink]="class.id.toString()">
+        <h3>{{ class.classNumber }}</h3>
+        <mat-icon>chevron_right</mat-icon>
+    </li>
+</ul>

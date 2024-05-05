@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ListHeaderComponent {
 
   @Input() title: string = '';
-  @Input() subtitle: string = '';
+  @Input() subtitle: string | number = '';
   @Input() span: string = '';
   @Output() sort = new EventEmitter;
   @Output() add = new EventEmitter;

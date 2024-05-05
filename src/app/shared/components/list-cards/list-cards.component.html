@@ -2,19 +2,19 @@
   <li
     *ngFor="let element of list"
     class="list-cards"
-    [routerLink]="getRoute(element)"
+    [routerLink]="element.id"
   >
     <div class="title-top">
       <span>{{ element.difficulty }}</span>
-      <mat-icon [matMenuTriggerFor]="menu" class="action-button"  (click)="$event.stopPropagation()"
+      <mat-icon [matMenuTriggerFor]="menu" class="action-button" (click)="$event.stopPropagation()"
         >more_horiz</mat-icon
       >
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="editing(element)">
           <mat-icon>edit</mat-icon>
           <span>Editar curso</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="deleting(element.id)">
           <mat-icon>delete</mat-icon>
           <span>Eliminar curso</span>
         </button>

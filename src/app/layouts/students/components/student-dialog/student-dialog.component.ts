@@ -54,23 +54,10 @@ export class StudentDialogComponent implements OnInit {
       ],
       cel: ['', [Validators.required, Validators.pattern('[0-9 ]{10}')]],
       course: this.formBuilder.group({
-        courseId: [''],
         name: ['', Validators.required],
-        classNumber: [0],
-        isApproved: [undefined],
+        classNumber: ['', Validators.required],
+        isApproved: [undefined, Validators.required],
       }),
-    });
-
-    console.log(this.editingStudent);
-
-    console.log({
-      ...this.editingStudent,
-      course: {
-        courseId: this.editingStudent?.course.courseId,
-        name: this.editingStudent?.course.name,
-        classNumber: this.editingStudent?.course.classNumber,
-        isApproved: this.editingStudent?.course.isApproved,
-      },
     });
 
     this.editingStudent &&
@@ -93,7 +80,7 @@ export class StudentDialogComponent implements OnInit {
       next: (courses) => (this.courses = courses),
       complete: () => {},
     });
-    
+
     this.editingStudent &&
       this._classes
         .getClassByCourse(this.editingStudent.course.courseId)
@@ -105,10 +92,10 @@ export class StudentDialogComponent implements OnInit {
 
   onCourseChange() {
     if (this.studentForm.get('course')?.value) {
-      this.studentForm.get('classNumber')?.enable();
+      this.studentForm.get('course')?.get('classNumber')?.enable();
       this.displayHint = false;
     } else {
-      this.studentForm.get('classNumber')?.disable();
+      this.studentForm.get('course')?.get('classNumber')?.disable();
       this.displayHint = true;
     }
   }

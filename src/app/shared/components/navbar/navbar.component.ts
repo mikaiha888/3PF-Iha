@@ -30,6 +30,12 @@ export class NavbarComponent {
       link: '/courses',
     },
     {
+      name: 'Clases',
+      iconName: 'airplay',
+      alert: false,
+      link: '/classes',
+    },
+    {
       name: 'Alumnos',
       iconName: 'group',
       alert: true,

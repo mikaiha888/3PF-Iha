@@ -1,0 +1,33 @@
+<div class="detail-page">
+  <div class="detail-base">
+    <div class="detail">
+      <div class="detail-header">
+        <h2 appHeaderFontSize>
+          {{ course?.name }}
+        </h2>
+        <div class="detail-options">
+          <button mat-icon-button disabled>
+            <mat-icon>description</mat-icon>
+          </button>
+          <button mat-icon-button (click)="course && updateCourse(course)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="course && deleteCourse(course.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="detail-difficulties">
+        <span>{{ course?.difficulty }}</span>
+      </div>
+      <div class="detail-description">
+        <p>
+          {{ course?.description }}
+        </p>
+      </div>
+      <div class="detail-description">
+        <app-list-cards [list]="course ? course.classesId : []"></app-list-cards>
+      </div>
+    </div>
+  </div>
+</div>

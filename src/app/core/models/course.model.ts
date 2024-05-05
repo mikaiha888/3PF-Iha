@@ -9,20 +9,19 @@ export type CourseName =
   | 'Game Development'
   | 'Cybersecurity';
 
-export enum CourseDifficulty {
-  Beginner = "Beginner",
-  Elementary = "Elementary",
-  PreIntermediate = "Pre-intermediate",
-  Intermediate = "Intermediate",
-  UpperIntermediate = "Upper-intermediate",
-  Advanced = "Advanced",
-  Proficiency = "Proficiency"
-}
+export type CourseDifficulty =
+  | 'Beginner'
+  | 'Elementary'
+  | 'Pre-intermediate'
+  | 'Intermediate'
+  | 'Upper-intermediate'
+  | 'Advanced'
+  | 'Proficiency'
 
 export interface Course {
   id: number;
   name: CourseName;
   difficulty: CourseDifficulty;
   description: string;
-  classIds: number[];
+  classesId: number[];
 }

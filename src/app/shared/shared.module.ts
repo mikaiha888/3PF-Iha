@@ -12,7 +12,6 @@ import { DisplayFullnamePipe } from './pipes/display-fullname.pipe';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTreeModule } from '@angular/material/tree';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -34,8 +33,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     CommonModule,
     RouterModule,
-    FormFieldValidationsPipe,
-    DisplayFullnamePipe,
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
@@ -50,8 +47,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FormFieldValidationsPipe,
     DisplayFullnamePipe,
     MatMenuModule,
-    MatIconModule,
     MatTableModule,
+    MatIconModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,

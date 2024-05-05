@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Course, CourseDifficulty } from '../models/course.model';
+import { Course } from '../models/course.model';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { CourseDialogComponent } from '../../layouts/courses/components/course-dialog/course-dialog.component';
 
 @Injectable({
@@ -14,49 +14,55 @@ export class CoursesService {
     {
       id: 1,
       name: 'Full Stack Development',
-      difficulty: CourseDifficulty.Intermediate,
+      difficulty: 'Intermediate',
       description: 'Aprende a desarrollar software tanto del lado del cliente como del servidor.',
-      classIds: [],
+      classesId: [],
     },
     {
       id: 2,
       name: 'Frontend Development',
-      difficulty: CourseDifficulty.PreIntermediate,
+      difficulty: 'Pre-intermediate',
       description: 'Enfoque en desarrollar interfaces de usuario y experiencias para la web.',
-      classIds: [],
+      classesId: [],
     },
     {
       id: 3,
       name: 'Backend Development',
-      difficulty: CourseDifficulty.Intermediate,
+      difficulty: 'Intermediate',
       description: 'Aprende a construir y mantener el lado del servidor de aplicaciones web.',
-      classIds: [],
+      classesId: [],
     },
     {
       id: 4,
       name: 'UX Design',
-      difficulty: CourseDifficulty.UpperIntermediate,
+      difficulty: 'Upper-intermediate',
       description: 'Enfoque en crear experiencias de usuario intuitivas y atractivas.',
-      classIds: [],
+      classesId: [],
     },
     {
       id: 5,
       name: 'Marketing',
-      difficulty: CourseDifficulty.PreIntermediate,
+      difficulty: 'Pre-intermediate',
       description: 'Aprende estrategias para promocionar productos o servicios.',
-      classIds: [],
+      classesId: [],
     },
     {
       id: 6,
       name: 'Data Science',
-      difficulty: CourseDifficulty.Advanced,
+      difficulty: 'Advanced',
       description: 'Estudia y analiza grandes conjuntos de datos para extraer información valiosa.',
-      classIds: [],
+      classesId: [],
     },
   ];
 
   getCourses() {
     return of(this.courses);
+  }
+
+  getCourseById(id: number): Observable<Course | undefined> {
+    return this.getCourses().pipe(
+      map((courses) => courses.find((course) => course.id == id))
+    );
   }
   
   addCourse(): Observable<any> {
