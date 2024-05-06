@@ -1,21 +1,18 @@
 import { Student } from "./student.model";
 
-export type Schedule = {
-    monday?: boolean;
-    tuesday?: boolean;
-    wednesday?: boolean;
-    thursday?: boolean;
-    friday?: boolean;
-};
+export type DayOfWeek = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
+
+export type ClassNumber = 101 | 202 | 303 | 404 | 505 | 606 | 707 | 808 | 909
 
 export type TimeFormat = `${string}:${string}`;
 
-export interface Class {
+export interface Classe {
     id: number;
     courseId: number;
-    classNumber: number;
-    day: Schedule;
-    time: TimeFormat;
+    classNumber: ClassNumber;
+    day: DayOfWeek[];
+    startTime: TimeFormat;
+    endTime: TimeFormat;
     startDate: Date;
     endDate: Date;
     students: Student[];

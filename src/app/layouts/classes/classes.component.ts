@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Class } from '../../core/models';
+import { Classe, CourseName } from '../../core/models';
 import { ClassesService } from '../../core/services/classes.service';
+import { CoursesService } from '../../core/services/courses.service';
 
 @Component({
   selector: 'app-classes',
@@ -8,10 +9,11 @@ import { ClassesService } from '../../core/services/classes.service';
   styleUrl: './classes.component.scss'
 })
 export class ClassesComponent {
-  classes: Class[] = [];
+  classes: Classe[] = [];
+  courseName?: CourseName;
   isSortAZ: boolean = true;
 
-  constructor(private _classes: ClassesService) {}
+  constructor(private _classes: ClassesService, private _courses: CoursesService) {}
 
   ngOnInit(): void {
     this._classes.getClasses().subscribe({
@@ -22,12 +24,21 @@ export class ClassesComponent {
       complete: () => {},
     });
   }
+
+  getCourseName(id: number) {
+    this._courses.getCourseById(id).subscribe({
+      next: (course) => this.courseName = course?.name,
+      error: (error) => console.log(error),
+      complete: () => {},
+    })
+    return this.courseName;
+  }
   
-  updateClass(editingClasses: Class): void {
-    this._classes.updateClass(editingClasses).subscribe({
+  updateClasse(editingClasse: Classe): void {
+    this._classes.updateClasse(editingClasse).subscribe({
       next: (response) => {
         this.classes = this.classes.map((clase) => (
-          clase.id === editingClasses.id 
+          clase.id === editingClasse.id 
             ? { ...clase, ...response}
             : clase
         ));
@@ -35,8 +46,8 @@ export class ClassesComponent {
     });
   }
 
-  deleteClass(id: number): void {
-    this._classes.deleteClass(id).subscribe((classes) => this.classes = classes);
+  deleteClasse(id: number): void {
+    this._classes.deleteClasse(id).subscribe((classes) => this.classes = classes);
   }
     
   sortClasses() {
@@ -47,8 +58,8 @@ export class ClassesComponent {
     });
   }
 
-  addClass() {
-    this._classes.addClass().subscribe({
+  addClasse() {
+    this._classes.addClasse().subscribe({
       next: (response) => {
         response.id = this.classes[this.classes.length - 1].id + 1;
         response.createdAt = new Date();

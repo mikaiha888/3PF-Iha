@@ -6,6 +6,7 @@ import { ClassesComponent } from './classes.component';
 import { ClassDetailComponent } from './pages/class-detail/class-detail.component';
 import { ClassDialogComponent } from './components/class-dialog/class-dialog.component';
 import { SharedModule } from '../../shared/shared.module';
+import { StudentsModule } from '../students/students.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     ClassesRoutingModule,
-    SharedModule
+    SharedModule,
+    StudentsModule
   ]
 })
 export class ClassesModule { }

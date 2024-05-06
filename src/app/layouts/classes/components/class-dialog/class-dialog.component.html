@@ -1,1 +1,108 @@
-<p>class-dialog works!</p>
+<div class="px-5 py-4">
+  <h3 class="mb-5 fs-4 fw-medium">Crear Clase</h3>
+  <form class="row" [formGroup]="classForm">
+    <mat-form-field appearance="outline" class="col-12">
+      <mat-label>Curso</mat-label>
+      <mat-select formControlName="courseId" (selectionChange)="onCourseChange()">
+        <mat-option
+          *ngFor="let course of courses"
+          [value]="course.name"
+          (click)="getAvailableClassNumbers(course.id)"
+          >{{ course.name }}</mat-option
+        >
+      </mat-select>
+      <mat-error>{{
+        classForm.get("courseId")?.errors | formFieldValidations : "courseId"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-12">
+      <mat-label>Número de clase</mat-label>
+      <mat-select formControlName="classNumber">
+        <mat-option
+          *ngFor="let classNum of availableClassNumbers"
+          [value]="classNum"
+          >{{ classNum }}</mat-option
+        >
+      </mat-select>
+      <mat-error>{{
+        classForm.get("classNumber")?.errors
+        | formFieldValidations : "classNumber"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-12">
+      <mat-label>Días</mat-label>
+      <mat-select formControlName="day" multiple>
+        <mat-option
+          *ngFor="let day of days"
+          [value]="day"
+          >{{ day }}</mat-option
+        >
+      </mat-select>
+      <mat-error>{{
+        classForm.get("courseId")?.errors | formFieldValidations : "courseId"
+      }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6 date">
+      <mat-label>Fecha de comienzo</mat-label>
+      <div>
+        <input matInput [matDatepicker]="picker1" formControlName="startDate" />
+        <mat-datepicker-toggle [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </div>
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-error>{{
+        classForm.get("startDate")?.errors | formFieldValidations : "startDate"
+      }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6 date">
+      <mat-label>Fecha de finalización</mat-label>
+      <div>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+        <mat-datepicker-toggle [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </div>
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-error>{{
+        classForm.get("endDate")?.errors | formFieldValidations : "endDate"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Horario de comienzo</mat-label>
+      <div>
+        <input matInput type="time" formControlName="startTime" />
+      </div>
+      <mat-hint>HH:MM</mat-hint>
+      <mat-error>{{
+        classForm.get("startTime")?.errors | formFieldValidations : "startTime"
+      }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Horario de finalización</mat-label>
+      <div>
+        <input matInput type="time" formControlName="endTime" />
+      </div>
+      <mat-hint>HH:MM</mat-hint>
+      <mat-error>{{
+        classForm.get("endTime")?.errors | formFieldValidations : "endTime"
+      }}</mat-error>
+    </mat-form-field>
+  </form>
+
+  <div
+    mat-dialog-actions
+    class="pt-5 mt-2 border-top d-flex justify-content-end gap-2"
+  >
+    <button class="rounded-2 fs-6 fw-medium cancel-button" mat-dialog-close>
+      Cancelar
+    </button>
+    <button class="rounded-2 fs-6 fw-medium save-button" (click)="onSave()">
+      Guardar
+    </button>
+  </div>
+</div>

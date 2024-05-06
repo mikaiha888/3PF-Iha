@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Class, Course, Student } from '../../../../core/models';
+import { Classe, Course, Student } from '../../../../core/models';
 import { CoursesService } from '../../../../core/services/courses.service';
 import { ClassesService } from '../../../../core/services/classes.service';
 
@@ -15,7 +15,7 @@ export class StudentDialogComponent implements OnInit {
   editingStudent?: Student;
   optionSelected: string = '';
   courses: Course[] = [];
-  classes: Class[] = [];
+  classes: Classe[] = [];
   displayHint: boolean = true;
 
   constructor(
@@ -83,7 +83,7 @@ export class StudentDialogComponent implements OnInit {
 
     this.editingStudent &&
       this._classes
-        .getClassByCourse(this.editingStudent.course.courseId)
+        .getClassesByCourse(this.editingStudent.course.courseId)
         .subscribe({
           next: (classes) => (this.classes = classes),
           complete: () => {},
@@ -101,7 +101,7 @@ export class StudentDialogComponent implements OnInit {
   }
 
   getClassesByCourse(id: number) {
-    this._classes.getClassByCourse(id).subscribe({
+    this._classes.getClassesByCourse(id).subscribe({
       next: (classes) => (this.classes = classes),
       complete: () => {},
     });

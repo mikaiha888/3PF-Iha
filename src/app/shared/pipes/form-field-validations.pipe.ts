@@ -46,6 +46,18 @@ export class FormFieldValidationsPipe implements PipeTransform {
       )
         error = 'El campo debe contener al menos 50 caracteres';
     }
+    if (
+      (value && args[0] === 'day') ||
+      (value && args[0] === 'time') ||
+      (value && args[0] === 'startDate') ||
+      (value && args[0] === 'endDate')
+    ) {
+      if (value['required']) error = 'Este campo es requerido';
+    }
+    if (value && args[0] === 'classNumber') {
+      if (value['required']) error = 'Este campo es requerido';
+      if (value['pattern']) error = 'Número de clase inválido';
+    }
 
     return error;
   }
