@@ -12,7 +12,7 @@
         >
       </mat-select>
       <mat-error>{{
-        classForm.get("courseId")?.errors | formFieldValidations : "courseId"
+        classForm.get("courseId")?.errors | classesFormValidations : "courseId"
       }}</mat-error>
     </mat-form-field>
     
@@ -27,7 +27,7 @@
       </mat-select>
       <mat-error>{{
         classForm.get("classNumber")?.errors
-        | formFieldValidations : "classNumber"
+        | classesFormValidations : "classNumber"
       }}</mat-error>
     </mat-form-field>
     
@@ -41,7 +41,7 @@
         >
       </mat-select>
       <mat-error>{{
-        classForm.get("courseId")?.errors | formFieldValidations : "courseId"
+        classForm.get("courseId")?.errors | classesFormValidations : "courseId"
       }}</mat-error>
     </mat-form-field>
 
@@ -54,7 +54,7 @@
       </div>
       <mat-hint>DD/MM/YYYY</mat-hint>
       <mat-error>{{
-        classForm.get("startDate")?.errors | formFieldValidations : "startDate"
+        classForm.get("startDate")?.errors | classesFormValidations : "startDate"
       }}</mat-error>
     </mat-form-field>
 
@@ -67,7 +67,7 @@
       </div>
       <mat-hint>DD/MM/YYYY</mat-hint>
       <mat-error>{{
-        classForm.get("endDate")?.errors | formFieldValidations : "endDate"
+        classForm.get("endDate")?.errors | classesFormValidations : "endDate"
       }}</mat-error>
     </mat-form-field>
     
@@ -78,7 +78,7 @@
       </div>
       <mat-hint>HH:MM</mat-hint>
       <mat-error>{{
-        classForm.get("startTime")?.errors | formFieldValidations : "startTime"
+        classForm.get("startTime")?.errors | classesFormValidations : "startTime"
       }}</mat-error>
     </mat-form-field>
 
@@ -89,7 +89,7 @@
       </div>
       <mat-hint>HH:MM</mat-hint>
       <mat-error>{{
-        classForm.get("endTime")?.errors | formFieldValidations : "endTime"
+        classForm.get("endTime")?.errors | classesFormValidations : "endTime"
       }}</mat-error>
     </mat-form-field>
   </form>

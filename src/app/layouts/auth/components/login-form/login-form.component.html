@@ -1,13 +1,19 @@
 <form *ngIf="loginForm" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
   <div *ngFor="let dataInput of dataInputs">
     <div class="input-container">
-      <input formControlName="{{ dataInput.name }}" type="{{ dataInput.type }}" placeholder="{{ dataInput.placeholder }}" class="input"/>
+      <input
+        [formControlName]="dataInput.name"
+        [type]="dataInput.type"
+        [placeholder]="dataInput.placeholder"
+        class="input"
+      />
     </div>
-    <span *ngIf="hasError(dataInput.name, 'required') && !hasError('email', 'pattern')">
-      {{ dataInput.errors['required'] }}
+    <span
+      *ngIf="hasError(dataInput.name, 'required') && !hasError('email', 'pattern')">
+      {{ dataInput.errors["required"] }}
     </span>
     <span *ngIf="hasError('email', 'pattern')">
-      {{ dataInput.errors['email'] }}
+      {{ dataInput.errors["email"] }}
     </span>
   </div>
   <div class="input-check">
@@ -17,7 +23,5 @@
     </label>
     <a href="#">Olvidé mi contraseña</a>
   </div>
-  <button type="submit">
-    Log In
-  </button>
+  <button type="submit">Log In</button>
 </form>

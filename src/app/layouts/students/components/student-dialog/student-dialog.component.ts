@@ -56,7 +56,7 @@ export class StudentDialogComponent implements OnInit {
       course: this.formBuilder.group({
         name: ['', Validators.required],
         classNumber: ['', Validators.required],
-        isApproved: [undefined, Validators.required],
+        isApproved: [undefined],
       }),
     });
 

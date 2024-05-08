@@ -1,0 +1,77 @@
+{
+  "users": [],
+  "students": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "cel": 1234567891,
+      "createdAt": "2024-05-06T00:00:00.000Z",
+      "course": {
+        "courseId": 1,
+        "name": "Full Stack Development",
+        "classNumber": 101,
+        "isApproved": true
+      }
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "cel": 9876543211,
+      "createdAt": "2024-05-06T00:00:00.000Z",
+      "course": {
+        "courseId": 2,
+        "name": "Frontend Development",
+        "classNumber": 101,
+        "isApproved": true
+      }
+    },
+    {
+      "id": "3",
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "email": "alice.johnson@example.com",
+      "cel": 5555555551,
+      "createdAt": "2024-05-06T00:00:00.000Z",
+      "course": {
+        "courseId": 5,
+        "name": "Marketing",
+        "classNumber": 101,
+        "isApproved": true
+      }
+    },
+    {
+      "id": "4",
+      "firstName": "Bob",
+      "lastName": "Brown",
+      "email": "bob.brown@example.com",
+      "cel": 1111111111,
+      "createdAt": "2024-05-06T00:00:00.000Z",
+      "course": {
+        "courseId": 1,
+        "name": "Full Stack Development",
+        "classNumber": 101,
+        "isApproved": true
+      }
+    },
+    {
+      "id": 5,
+      "firstName": "Eva",
+      "lastName": "Lee",
+      "email": "eva.lee@example.com",
+      "cel": 9999999991,
+      "createdAt": "2024-05-06T00:00:00.000Z",
+      "course": {
+        "courseId": 4,
+        "name": "UX Design",
+        "classNumber": 101,
+        "isApproved": true
+      }
+    }
+  ],
+  "courses": [],
+  "classes": []
+}

@@ -7,7 +7,6 @@ import { ListCardsComponent } from './components/list-cards/list-cards.component
 import { ListHeaderComponent } from './components/list-header/list-header.component';
 
 import { HeaderFontSizeDirective } from './directives/header-font-size.directive';
-import { FormFieldValidationsPipe } from './pipes/form-field-validations.pipe';
 import { DisplayFullnamePipe } from './pipes/display-fullname.pipe';
 
 import { MatMenuModule } from '@angular/material/menu';
@@ -21,15 +20,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthFormValidationsPipe } from './pipes/auth-form-validations.pipe';
+import { StudentsFormValidationsPipe } from './pipes/students-form-validations.pipe';
+import { CoursesFormValidationsPipe } from './pipes/courses-form-validations.pipe';
+import { ClassesFormValidationsPipe } from './pipes/classes-form-validations.pipe';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FormFieldValidationsPipe,
     DisplayFullnamePipe,
     HeaderFontSizeDirective,
     ListCardsComponent,
     ListHeaderComponent,
+    AuthFormValidationsPipe,
+    StudentsFormValidationsPipe,
+    CoursesFormValidationsPipe,
+    ClassesFormValidationsPipe,
   ],
   imports: [
     CommonModule,
@@ -45,7 +51,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ListCardsComponent,
     ListHeaderComponent,
     HeaderFontSizeDirective,
-    FormFieldValidationsPipe,
+    StudentsFormValidationsPipe,
+    CoursesFormValidationsPipe,
+    ClassesFormValidationsPipe,
     DisplayFullnamePipe,
     MatMenuModule,
     MatTableModule,

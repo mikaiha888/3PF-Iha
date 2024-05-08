@@ -5,7 +5,7 @@
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="firstName" />
         <mat-error>{{
-          studentForm.get("firstName")?.errors | formFieldValidations : "name"
+          studentForm.get("firstName")?.errors | studentsFormValidations : "name"
         }}</mat-error>
       </mat-form-field>
   
@@ -13,7 +13,7 @@
         <mat-label>Apellido</mat-label>
         <input matInput formControlName="lastName" />
         <mat-error>{{
-          studentForm.get("lastName")?.errors | formFieldValidations : "name"
+          studentForm.get("lastName")?.errors | studentsFormValidations : "name"
         }}</mat-error>
       </mat-form-field>
   
@@ -21,7 +21,7 @@
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" />
         <mat-error>{{
-          studentForm.get("email")?.errors | formFieldValidations : "email"
+          studentForm.get("email")?.errors | studentsFormValidations : "email"
         }}</mat-error>
       </mat-form-field>
 
@@ -29,7 +29,7 @@
         <mat-label>Cel</mat-label>
         <input matInput formControlName="cel" />
         <mat-error>{{
-          studentForm.get("cel")?.errors | formFieldValidations : "cel"
+          studentForm.get("cel")?.errors | studentsFormValidations : "cel"
         }}</mat-error>
       </mat-form-field>
       <ng-container formGroupName="course">
@@ -39,7 +39,7 @@
             <mat-option *ngFor="let course of courses" [value]="course.name" (click)="getClassesByCourse(course.id)">{{ course.name }}</mat-option>
           </mat-select>
           <mat-error>{{
-            studentForm.get("course")?.get("name")?.errors | formFieldValidations : "courseName"
+            studentForm.get("course")?.get("name")?.errors | studentsFormValidations : "courseName"
           }}</mat-error>
         </mat-form-field>
   
@@ -50,19 +50,19 @@
           </mat-select>
           <mat-hint *ngIf="displayHint">*Seleccionar el curso para habilitar el campo de clase</mat-hint>
           <mat-error>{{
-            studentForm.get("course")?.get("classNumber")?.errors | formFieldValidations : "classNumber"
+            studentForm.get("course")?.get("classNumber")?.errors | studentsFormValidations : "classNumber"
           }}</mat-error>
         </mat-form-field>
   
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>Seleccionar estado</mat-label>
           <mat-select formControlName="isApproved">
-            <mat-option [value]="undefined">Indefinido</mat-option>
+            <mat-option [value]="'undefined'">Indefinido</mat-option>
             <mat-option [value]="true">Aprobado</mat-option>
             <mat-option [value]="false">Desaprobado</mat-option>
           </mat-select>
           <mat-error>{{
-            studentForm.get("course")?.get("isApproved")?.errors | formFieldValidations : "isApproved"
+            studentForm.get("course")?.get("isApproved")?.errors | studentsFormValidations : "isApproved"
           }}</mat-error>
         </mat-form-field>
       </ng-container>

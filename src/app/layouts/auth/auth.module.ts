@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SingupComponent } from './singup/singup.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    SharedModule
   ],
   exports: [
     LoginComponent,

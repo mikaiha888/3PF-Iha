@@ -19,7 +19,7 @@
         <button mat-icon-button (click)="student && updateStudent(student)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="(student && deleteStudent(student.id))">
+        <button mat-icon-button (click)="student && deleteStudent(student.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
@@ -27,11 +27,27 @@
     <div class="personal-information">
       <h2 appHeaderFontSize>Información Personal</h2>
       <div>
-        <p><span>Curso:</span><a [routerLink]="'/courses/' + student?.course?.courseId">{{ student?.course?.name }}</a></p>
-        <p><span>Clase:</span><a [routerLink]="'/courses/' + student?.course?.courseId">{{ student?.course?.classNumber }}</a></p>
+        <p>
+          <span>Curso:</span
+          ><a [routerLink]="'/courses/' + student?.course?.courseId">{{
+            student?.course?.name
+          }}</a>
+        </p>
+        <p>
+          <span>Clase:</span
+          ><a [routerLink]="'/courses/' + student?.course?.courseId">{{
+            student?.course?.classNumber
+          }}</a>
+        </p>
         <p>
           <span>Estado actual:</span
-          >{{ student?.course?.isApproved ? "Aprobado" : "Desaprobado" }}
+          >{{
+            student?.course?.isApproved === null
+            ? '---' 
+            : student?.course?.isApproved
+              ? "Aprobado"
+              : "Desaprobado"
+          }}
         </p>
       </div>
       <div>

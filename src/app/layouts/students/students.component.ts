@@ -35,7 +35,7 @@ export class StudentsComponent implements OnInit {
       next: (response) => {
         response.id = this.students[this.students.length - 1].id + 1;
         response.createdAt = new Date();
-        console.log(response);
+        response.isApproved = response.isApproved === 'undefined' && undefined;
         this.students = [...this.students, response];       
       },
     });

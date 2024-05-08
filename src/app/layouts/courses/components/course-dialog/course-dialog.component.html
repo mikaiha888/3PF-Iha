@@ -5,7 +5,7 @@
       <mat-label>Nombre</mat-label>
       <input matInput formControlName="name" />
       <mat-error>{{
-        courseForm.get("name")?.errors | formFieldValidations : "courseName"
+        courseForm.get("name")?.errors | coursesFormValidations : "courseName"
       }}</mat-error>
     </mat-form-field>
 
@@ -14,7 +14,7 @@
       <textarea matInput formControlName="description"></textarea>
       <mat-error>{{
         courseForm.get("description")?.errors
-          | formFieldValidations : "description"
+          | coursesFormValidations : "description"
       }}</mat-error>
     </mat-form-field>
 
@@ -29,7 +29,7 @@
       </mat-select>
       <mat-error>{{
         courseForm.get("difficulty")?.errors
-          | formFieldValidations : "difficulty"
+          | coursesFormValidations : "difficulty"
       }}</mat-error>
     </mat-form-field>
   </form>

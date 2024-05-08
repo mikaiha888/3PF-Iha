@@ -1,7 +1,7 @@
-<app-navbar *ngIf="isLogged">
+<app-navbar *ngIf="displayNavBar">
   <router-outlet />
 </app-navbar>
 
-<div *ngIf="!isLogged">
+<ng-container *ngIf="!displayNavBar">
     <router-outlet />
-</div>
+</ng-container>

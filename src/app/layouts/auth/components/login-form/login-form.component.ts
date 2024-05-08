@@ -39,7 +39,7 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm?.valid) {
-      this._auth.login();
+      this._auth.login(this.loginForm.getRawValue());
     } else {
       this.loginForm?.markAllAsTouched();
     }

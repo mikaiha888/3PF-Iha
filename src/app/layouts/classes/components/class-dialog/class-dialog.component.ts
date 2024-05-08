@@ -33,12 +33,12 @@ export class ClassDialogComponent implements OnInit {
   ) {
     this.classForm = this.formBuilder.group({
       courseId: ['', [Validators.required]],
-      classNumber: ['', [Validators.required, Validators.pattern('')]],
+      classNumber: ['', [Validators.required, Validators.pattern('^[0-9]{1,3}$')]],
       day: [[], Validators.required],
-      startTime: ['', Validators.required],
-      endTime: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startTime: ['', [Validators.required, Validators.pattern('^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
+      endTime: ['', [Validators.required, Validators.pattern('^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
+      startDate: ['', [Validators.required, Validators.pattern('^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/(1\d{3}|[1-9]\d{0,3})$')]],
+      endDate: ['', [Validators.required, Validators.pattern('^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/(1\d{3}|[1-9]\d{0,3})$')]],
     });
 
     this._classes.getClasses().subscribe((classes: Classe[]) => {
