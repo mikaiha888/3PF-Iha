@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Course, CourseDifficulty } from '../../../../core/models';
@@ -6,9 +6,9 @@ import { Course, CourseDifficulty } from '../../../../core/models';
 @Component({
   selector: 'app-course-dialog',
   templateUrl: './course-dialog.component.html',
-  styleUrl: './course-dialog.component.scss',
+  styleUrl: './course-dialog.component.scss'
 })
-export class CourseDialogComponent implements OnInit {
+export class CourseDialogComponent {
   courseForm: FormGroup;
   difficulties: CourseDifficulty[] = [
     'Beginner',
@@ -26,12 +26,13 @@ export class CourseDialogComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáíúéóñÁÍÚÉÓÑ ]+$'),
+          Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚüÜ0-9\s]+$'),
           Validators.maxLength(50),
         ],
       ],
       difficulty: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(50)]],
+      classes: [[]],
     });
 
     this.editingCourse &&
@@ -39,8 +40,6 @@ export class CourseDialogComponent implements OnInit {
         ...this.editingCourse,
       });
   }
-
-  ngOnInit(): void {}
 
   onSave() {
     if (this.courseForm.invalid) {

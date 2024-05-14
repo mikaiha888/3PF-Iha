@@ -1,64 +1,48 @@
 import { Component, OnInit } from '@angular/core';
+import { Course } from '../../core/models';
 import { CoursesService } from '../../core/services/courses.service';
-import { Course } from '../../core/models/course.model';
+import { MatDialog } from '@angular/material/dialog';
+import { CourseDialogComponent } from './components/course-dialog/course-dialog.component';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
 })
-
 export class CoursesComponent implements OnInit {
   courses: Course[] = [];
+  loading: boolean = true;
   isSortAZ: boolean = true;
 
-  constructor(private _courses: CoursesService) {}
+  constructor(private _courses: CoursesService, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     this._courses.getCourses().subscribe({
-      next: (courses) => {
-        this.courses = courses;
-      },
+      next: (courses) => (this.courses = courses),
       error: (error) => console.log(error),
-      complete: () => {},
-    });
-  }
-
-  updateCourse(editingCourses: Course): void {
-    this._courses.updateCourse(editingCourses).subscribe({
-      next: (response) => {
-        this.courses = this.courses.map((course) => 
-          course.id === editingCourses.id 
-            ? { ...course, ...response}
-            : course
-        );
-      },
-    });
-  }
-
-  deleteCourse(id: number): void {
-    this._courses.deleteCourse(id).subscribe((courses) => {
-      this.courses = courses;
-    });
-  }
-
-  
-  sortCourses() {
-    this.isSortAZ = !this.isSortAZ;
-    this._courses.sortCourses(this.isSortAZ, this.courses).subscribe({
-      next: (sortedCourses) => this.courses = [...sortedCourses],
-      complete: () => {}
+      complete: () => (this.loading = false),
     });
   }
 
   addCourse() {
-    this._courses.addCourse().subscribe({
-      next: (response) => {
-        response.id = this.courses[this.courses.length - 1].id + 1;
-        response.createdAt = new Date();
-        response.classesId = [101];
-        this.courses = [...this.courses, response];       
-      },
-    });
+    this.matDialog
+      .open(CourseDialogComponent)
+      .afterClosed()
+      .subscribe({
+        next: (course) => {
+          course && this._courses.createCourse(course).subscribe({
+            next: (c) => (this.courses = [...this.courses, c]),
+          });
+        },
+      });
+  }
+
+  sortCourses() {
+    this.isSortAZ = !this.isSortAZ;
+    const sortedCourses = this._courses.sortCourses(
+      this.isSortAZ,
+      this.courses
+    );
+    this.courses = [...sortedCourses];
   }
 }

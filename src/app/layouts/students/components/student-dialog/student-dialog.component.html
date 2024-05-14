@@ -32,29 +32,39 @@
           studentForm.get("cel")?.errors | studentsFormValidations : "cel"
         }}</mat-error>
       </mat-form-field>
-      <ng-container formGroupName="course">
+
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Seleccionar curso</mat-label>
-          <mat-select formControlName="name">
-            <mat-option *ngFor="let course of courses" [value]="course.name" (click)="getClassesByCourse(course.id)">{{ course.name }}</mat-option>
+          <mat-select formControlName="courseName">
+            <mat-option *ngFor="let courseName of courses" [value]="courseName" (click)="getClassesByCourse(courseName)">{{ courseName }}</mat-option>
           </mat-select>
           <mat-error>{{
-            studentForm.get("course")?.get("name")?.errors | studentsFormValidations : "courseName"
+            studentForm.get("courseName")?.errors | studentsFormValidations : "courseName"
           }}</mat-error>
         </mat-form-field>
   
         <mat-form-field appearance="outline" class="col-3">
           <mat-label>Seleccionar clase</mat-label>
           <mat-select formControlName="classNumber">
-            <mat-option *ngFor="let class of classes" [value]="class.classNumber">{{ class.classNumber }}</mat-option>
+            <mat-option *ngFor="let classe of classes" [value]="classe.classNumber">{{ classe.classNumber }}</mat-option>
           </mat-select>
-          <mat-hint *ngIf="displayHint">*Seleccionar el curso para habilitar el campo de clase</mat-hint>
+          <mat-hint *ngIf="!classes.length">{{ displayHint }}</mat-hint>
           <mat-error>{{
-            studentForm.get("course")?.get("classNumber")?.errors | studentsFormValidations : "classNumber"
+            studentForm.get("classNumber")?.errors | studentsFormValidations : "classNumber"
           }}</mat-error>
         </mat-form-field>
-
-      </ng-container>
+  
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="isApproved">
+            <mat-option [value]="undefined">Indefinido</mat-option>
+            <mat-option [value]="true">Aprobado</mat-option>
+            <mat-option [value]="false">Desaprobado</mat-option>
+          </mat-select>
+          <mat-error>{{
+            studentForm.get("isApproved")?.errors | studentsFormValidations : "isApproved"
+          }}</mat-error>
+        </mat-form-field>
 
     </form>
     <div mat-dialog-actions class="pt-5 mt-2 border-top d-flex justify-content-end gap-2">

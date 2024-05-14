@@ -11,14 +11,14 @@
   cursor: pointer;
 }
 
-.action-button:hover, .view-detail:hover {
+.action-button:hover,
+.view-detail:hover {
   color: rgb(55, 48, 163, 0.95);
 }
 
 .sm-cell {
   width: 15%;
 }
-
 
 .md-cell {
   width: 20%;
@@ -34,25 +34,25 @@
 
 .coursesEnrrolled {
   padding: 0.2rem 0.5rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.full-stack-dev {
+.full-stack-development {
   background-color: rgb(254 226 226);
 }
 
-.front-dev {
+.frontend-development {
   background-color: rgb(219 234 254);
 }
 
-.back-dev {
+.backend-development {
   background-color: rgb(236 252 203);
 }
 
-.ux {
+.ux-designer {
   background-color: rgb(237 233 254);
 }
 
@@ -60,7 +60,7 @@
   background-color: rgb(255 237 213);
 }
 
-.data {
+.data-science {
   background-color: rgb(220 252 231);
 }
 

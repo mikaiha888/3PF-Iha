@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ListCardsComponent } from './components/list-cards/list-cards.component';
 import { ListHeaderComponent } from './components/list-header/list-header.component';
-
 import { HeaderFontSizeDirective } from './directives/header-font-size.directive';
 import { DisplayFullnamePipe } from './pipes/display-fullname.pipe';
+import { StudentsFormValidationsPipe } from './pipes/students-form-validations.pipe';
+import { CoursesFormValidationsPipe } from './pipes/courses-form-validations.pipe';
+import { ClassesFormValidationsPipe } from './pipes/classes-form-validations.pipe';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,19 +21,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AuthFormValidationsPipe } from './pipes/auth-form-validations.pipe';
-import { StudentsFormValidationsPipe } from './pipes/students-form-validations.pipe';
-import { CoursesFormValidationsPipe } from './pipes/courses-form-validations.pipe';
-import { ClassesFormValidationsPipe } from './pipes/classes-form-validations.pipe';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    DisplayFullnamePipe,
-    HeaderFontSizeDirective,
-    ListCardsComponent,
     ListHeaderComponent,
-    AuthFormValidationsPipe,
+    HeaderFontSizeDirective,
+    DisplayFullnamePipe,
     StudentsFormValidationsPipe,
     CoursesFormValidationsPipe,
     ClassesFormValidationsPipe,
@@ -40,21 +35,20 @@ import { ClassesFormValidationsPipe } from './pipes/classes-form-validations.pip
   imports: [
     CommonModule,
     RouterModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
   exports: [
     NavbarComponent,
-    ListCardsComponent,
     ListHeaderComponent,
     HeaderFontSizeDirective,
+    DisplayFullnamePipe,
     StudentsFormValidationsPipe,
     CoursesFormValidationsPipe,
     ClassesFormValidationsPipe,
-    DisplayFullnamePipe,
     MatMenuModule,
     MatTableModule,
     MatIconModule,

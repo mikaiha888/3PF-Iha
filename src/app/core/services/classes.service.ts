@@ -1,57 +1,56 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Classe } from '../models';
-import { Observable, delay, map, of } from 'rxjs';
-import { ClassDialogComponent } from '../../layouts/classes/components/class-dialog/class-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { environment } from '../../../environments/environment';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClassesService {
-  getClassById(studentId: number) {
-    throw new Error('Method not implemented.');
-  }
-  constructor(private matDialog: MatDialog) {}
-  private classes: Classe[] = []
+  constructor(private _httpClient: HttpClient) {}
 
   getClasses(): Observable<Classe[]> {
-    return of(this.classes);
+    return this._httpClient.get<Classe[]>(`${environment.apiBaseUrl}/classes`);
   }
 
-  getClasseById(id: number): Observable<Classe | undefined> {
+  getClassesByCourse(courseName: string): Observable<Classe[]> {
     return this.getClasses().pipe(
-      map((classes) => classes.find((classe) => classe.id == id))
+      map((classes) => {
+        return classes.filter((classe) => classe.courseName === courseName);
+      })
     );
   }
 
-  getClassesByCourse(courseId: number): Observable<Classe[]> {
+  getClasseByData(classeData: any): Observable<Classe | undefined> {
     return this.getClasses().pipe(
-      map((classes) => classes.filter((c) => c.courseId == courseId))
+      map((classes) => {
+        return classes.find(
+          (classe) =>
+            classe.courseName === classeData.courseName &&
+            classe.classNumber === Number(classeData.classNumber)
+        );
+      })
     );
   }
 
-  addClasse(): Observable<any> {
-    return this.matDialog.open(ClassDialogComponent).afterClosed();
+  createClasse(classe: Classe): Observable<Classe> {
+    return this._httpClient.post<Classe>(
+      `${environment.apiBaseUrl}/classes`,
+      classe
+    );
   }
 
-  updateClasse(editingClasse: Classe): Observable<any> {
-    return this.matDialog
-      .open(ClassDialogComponent, { data: editingClasse })
-      .afterClosed();
+  updateClasse(classe: Classe): Observable<Classe> {
+    return this._httpClient.put<Classe>(
+      `${environment.apiBaseUrl}/classes/${classe.id}`,
+      classe
+    );
   }
 
-  deleteClasse(id: number): Observable<Classe[]> {
-    if (confirm(`¿Deseas eliminar esta clase de la lista?`)) {
-      this.classes = this.classes.filter((c) => c.id !== id);
-    }
-    return of(this.classes);
-  }
-
-  sortClasses(isSortAZ: boolean, students: Classe[]): Observable<Classe[]> {
-    const sortedClasses = isSortAZ
-      ? students.slice().sort((a, b) => a.classNumber - b.classNumber)
-      : students.slice().sort((a, b) => b.classNumber - a.classNumber);
-
-    return of(sortedClasses);
+  deleteClasse(id: string): Observable<Classe> {
+    return this._httpClient.delete<Classe>(
+      `${environment.apiBaseUrl}/classes/${id}`
+    );
   }
 }

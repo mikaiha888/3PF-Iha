@@ -1,17 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DataInput } from '../../../../core/models';
 import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss',
+  styleUrl: './login-form.component.scss'
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
   loginForm: FormGroup | undefined;
 
-  dataInputs: DataInput[] = [];
+  dataInputs = [
+    {
+      name: 'email',
+      type: 'email',
+      iconName: 'mail',
+      placeholder: 'Email',
+      errors: {
+        required: 'Email es requerido',
+        email: 'Email inválido',
+      },
+    },
+    {
+      name: 'password',
+      type: 'password',
+      iconName: 'lock-keyhole',
+      placeholder: 'Password',
+      errors: {
+        required: 'Password es requerido',
+      },
+    },
+  ];
 
   constructor(private formBuilder: FormBuilder, private _auth: AuthService) {}
   
@@ -26,7 +45,6 @@ export class LoginFormComponent implements OnInit {
       ],
       password: ['', [Validators.required]],
     });
-    this.dataInputs = this._auth.getDataInputs();
   }
 
   hasError(input: string, errorType: string): boolean | undefined {

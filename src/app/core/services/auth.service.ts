@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { DataInput, User } from '../models';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { Admin, User } from '../models';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  private authUser = new BehaviorSubject<User | null>(null);
-  public authUser$ = this.authUser.asObservable();
+  authUser = new BehaviorSubject<User | Admin | null>(null);
   MOCK_AUTH_USER: User = {
-    id: 1,
+    id: "1",
     firstName: "John",
     lastName: "Doe",
     email: "john.doe@example.com",
@@ -20,8 +20,8 @@ export class AuthService {
     role: "STUDENT",
   }
 
-  constructor(private _router: Router) {}
-
+  constructor(private _http: HttpClient, private _router: Router) {}
+  
   login(data: User): void {
     if (data.email !== 'asd@asd.com' || data.password !== 'asd') {
       alert('Email o password incorrectos');
@@ -47,27 +47,5 @@ export class AuthService {
     return !!token;
   }
 
-  getDataInputs(): DataInput[] {
-    return [
-      {
-        name: 'email',
-        type: 'email',
-        iconName: 'mail',
-        placeholder: 'Email',
-        errors: {
-          required: 'Email es requerido',
-          email: 'Email inválido',
-        },
-      },
-      {
-        name: 'password',
-        type: 'password',
-        iconName: 'lock-keyhole',
-        placeholder: 'Password',
-        errors: {
-          required: 'Password es requerido',
-        },
-      },
-    ];
-  }
+  
 }

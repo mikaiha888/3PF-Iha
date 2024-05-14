@@ -1,3 +1,11 @@
+export interface Course {
+  id: string;
+  name: CourseName;
+  description: string;
+  difficulty: CourseDifficulty;
+  classes: number[];
+}
+
 export type CourseName =
   | 'Full Stack Development'
   | 'Frontend Development'
@@ -10,11 +18,3 @@ export type CourseName =
   | 'Cybersecurity';
 
 export type CourseDifficulty = 'Beginner' | 'Intermediate' | 'Advanced';
-
-export interface Course {
-  id: number;
-  name: CourseName;
-  description: string;
-  difficulty: CourseDifficulty;
-  classesId: number[];
-}

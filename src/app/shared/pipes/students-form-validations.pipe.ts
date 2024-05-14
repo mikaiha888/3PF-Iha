@@ -15,15 +15,13 @@ export class StudentsFormValidationsPipe implements PipeTransform {
     switch (args[0]) {
       case 'name':
         if (value['pattern']) error = 'El campo debe contener solo letras';
-        if (
-          value['maxlength'] &&
-          value['maxlength']['actualLength'] >
-          value['maxlength']['requiredLength']
-        ) error = 'El campo no puede tener más de 32 caracteres';
+        if (value['maxlength'])
+          error = 'El campo no puede tener más de 32 caracteres';
         break;
 
       case 'email':
-        if (value['pattern']) error = 'El formato del correo electrónico es incorrecto.';
+        if (value['pattern'])
+          error = 'El formato del correo electrónico es incorrecto.';
         break;
 
       case 'cel':

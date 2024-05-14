@@ -6,8 +6,4 @@
   (add)="addCourse()"
 />
 
-<app-list-cards
-  [list]="courses"
-  (edit)="updateCourse($event)"
-  (delete)="deleteCourse($event)"
-></app-list-cards>
+<app-course-list [courses]="courses" />

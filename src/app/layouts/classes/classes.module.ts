@@ -3,23 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { ClassesRoutingModule } from './classes-routing.module';
 import { ClassesComponent } from './classes.component';
-import { ClassDetailComponent } from './pages/class-detail/class-detail.component';
-import { ClassDialogComponent } from './components/class-dialog/class-dialog.component';
 import { SharedModule } from '../../shared/shared.module';
-import { StudentsModule } from '../students/students.module';
-
+import { ClasseDetailComponent } from './pages/classe-detail/classe-detail.component';
+import { ClasseDialogComponent } from './components/classe-dialog/classe-dialog.component';
 
 @NgModule({
-  declarations: [
-    ClassesComponent,
-    ClassDetailComponent,
-    ClassDialogComponent
-  ],
-  imports: [
-    CommonModule,
-    ClassesRoutingModule,
-    SharedModule,
-    StudentsModule
-  ]
+  declarations: [ClassesComponent, ClasseDetailComponent, ClasseDialogComponent],
+  imports: [CommonModule, ClassesRoutingModule, SharedModule],
 })
-export class ClassesModule { }
+export class ClassesModule {}

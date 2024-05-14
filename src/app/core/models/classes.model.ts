@@ -1,5 +1,17 @@
-import { Admin } from './admin.model';
-import { Student } from './student.model';
+import { Admin, CourseName } from ".";
+
+export interface Classe {
+  id: string;
+  courseName: CourseName;
+  classNumber: ClassNumber;
+  day: DayOfWeek[];
+  startTime: TimeFormat;
+  endTime: TimeFormat;
+  startDate: Date;
+  endDate: Date;
+  studentsId: string[];
+  admin: Admin;
+}
 
 export type DayOfWeek =
   | 'monday'
@@ -8,19 +20,6 @@ export type DayOfWeek =
   | 'thursday'
   | 'friday';
 
-export type ClassNumber = 101 | 202 | 303 | 404 | 505 | 606 | 707 | 808 | 909;
-
 export type TimeFormat = `${string}:${string}`;
 
-export interface Classe {
-  id: number;
-  courseId: number;
-  classNumber: ClassNumber;
-  day: DayOfWeek[];
-  startTime: TimeFormat;
-  endTime: TimeFormat;
-  startDate: Date;
-  endDate: Date;
-  studentsAttendingId: number[];
-  adminInChargeId: number;
-}
+export type ClassNumber = 101 | 202 | 303 | 404 | 505 | 606 | 707 | 808 | 909;

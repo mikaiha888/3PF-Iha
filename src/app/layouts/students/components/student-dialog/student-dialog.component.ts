@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Classe, Student } from '../../../../core/models';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Classe, Course, Student } from '../../../../core/models';
-import { CoursesService } from '../../../../core/services/courses.service';
 import { ClassesService } from '../../../../core/services/classes.service';
 
 @Component({
@@ -10,20 +9,25 @@ import { ClassesService } from '../../../../core/services/classes.service';
   templateUrl: './student-dialog.component.html',
   styleUrl: './student-dialog.component.scss',
 })
-export class StudentDialogComponent implements OnInit {
+export class StudentDialogComponent {
   studentForm: FormGroup;
   editingStudent?: Student;
   optionSelected: string = '';
-  courses: Course[] = [];
+  displayHint: string = '';
+  courses = [
+    'Full Stack Development',
+    'Frontend Development',
+    'Backend Development',
+    'UX Design',
+    'Marketing',
+  ];
   classes: Classe[] = [];
-  displayHint: boolean = true;
 
   constructor(
-    private _courses: CoursesService,
-    private _classes: ClassesService,
+    private _classe: ClassesService,
     private formBuilder: FormBuilder,
     private matDialogRef: MatDialogRef<StudentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private originalEditingStudent?: Student
+    @Inject(MAT_DIALOG_DATA) originalEditingStudent?: Student
   ) {
     if (originalEditingStudent)
       this.editingStudent = { ...originalEditingStudent };
@@ -33,7 +37,7 @@ export class StudentDialogComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáíúéóñÁÍÚÉÓÑ]+$'),
+          Validators.pattern('^[a-zA-ZáíúéóñÁÍÚÉÓÑ ]+$'),
           Validators.maxLength(32),
         ],
       ],
@@ -41,7 +45,7 @@ export class StudentDialogComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZáíúéóñÁÍÚÉÓÑ]+$'),
+          Validators.pattern('^[a-zA-ZáíúéóñÁÍÚÉÓÑ ]+$'),
           Validators.maxLength(32),
         ],
       ],
@@ -52,60 +56,51 @@ export class StudentDialogComponent implements OnInit {
           Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         ],
       ],
+      password: ['asd'],
       cel: ['', [Validators.required, Validators.pattern('[0-9 ]{10}')]],
-      coursesEnrolled: this.formBuilder.group({
-        course: ['', Validators.required],
-        classe: [0, Validators.required],
-        grade: [[]],
-        isApproved: [undefined, Validators.required],
-      })
+      courseName: ['', Validators.required],
+      classNumber: [0, Validators.required],
+      isApproved: [undefined],
+      createdAt: [new Date()],
     });
 
     this.editingStudent &&
       this.studentForm.patchValue({
         ...this.editingStudent,
-        coursesEnrolled: {
-          course: this.editingStudent.courseEnrolled.course.id,
-          classe: this.editingStudent.courseEnrolled.classe.id,
-          isApproved: this.editingStudent.courseEnrolled.isApproved,
-        },
       });
   }
 
   ngOnInit(): void {
-    !this.studentForm.get('course')?.get('name')?.value &&
-      this.studentForm.get('course')?.get('classNumber')?.disable();
-
-    this._courses.getCourses().subscribe({
-      next: (courses) => (this.courses = courses),
-      complete: () => {},
-    });
-
+    !this.studentForm.get('courseName')?.value &&
+      this.studentForm.get('classNumber')?.disable();
+    this.displayHint = '*Seleccionar el curso para habilitar el campo de clase';
     this.editingStudent &&
-      this._classes
-        .getClassesByCourse(this.editingStudent.courseEnrolled.course.id)
-        .subscribe({
-          next: (classes) => (this.classes = classes),
-          complete: () => {},
-        });
+      this.getClassesByCourse(this.editingStudent.courseName);
   }
 
-  getClassesByCourse(id: number) {
-    if (this.studentForm.get('course')?.value) {
-      this.studentForm.get('course')?.get('classNumber')?.enable();
-      this.displayHint = false;
-      this._classes.getClassesByCourse(id).subscribe({
-        next: (classes) => (this.classes = classes),
-        complete: () => {},
-      });
-    }
+  getClassesByCourse(courseName: string): void {
+    this._classe.getClassesByCourse(courseName).subscribe({
+      next: (classes) => {
+        this.classes = classes;
+        if (classes.length) {
+          this.studentForm.get('classNumber')?.enable();
+        } else {
+          this.displayHint = '*No hay clases disponibles en este curso';
+          this.studentForm.get('classNumber')?.disable();
+        }
+      },
+    });
+  }
+
+  onCancel() {
+    this.studentForm.invalid
+      ? this.studentForm.markAllAsTouched()
+      : this.matDialogRef.close(this.studentForm.value);
   }
 
   onSave() {
-    if (this.studentForm.invalid) {
-      this.studentForm.markAllAsTouched();
-    } else {
-      this.matDialogRef.close(this.studentForm.value);
-    }
+    this.studentForm.invalid
+      ? this.studentForm.markAllAsTouched()
+      : this.matDialogRef.close(this.studentForm.value);
   }
 }

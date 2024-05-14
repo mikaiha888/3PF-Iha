@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../models';
-import { Observable, of, delay, map } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { StudentDialogComponent } from '../../layouts/students/components/student-dialog/student-dialog.component';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
+import { Observable, delay, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentsService {
-  constructor(private _httpClient: HttpClient, private matDialog: MatDialog) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getStudents(): Observable<Student[]> {
     return this._httpClient
@@ -18,37 +16,35 @@ export class StudentsService {
       .pipe(delay(1000));
   }
 
-  getStudentById(id: number): Observable<Student | undefined> {
+  getStudentById(id: string): Observable<Student | undefined> {
     return this._httpClient
       .get<Student>(`${environment.apiBaseUrl}/students/${id}`)
       .pipe(delay(1000));
   }
 
-  addStudent(): Observable<any> {
-    return this.matDialog.open(StudentDialogComponent).afterClosed();
-  }
-
-  updateStudent(id: number, editingStudent: Student): Observable<Student> {
-    return this._httpClient.put<Student>(
-      `${environment.apiBaseUrl}/students/${id}`,
-      editingStudent
+  createStudent(student: Student): Observable<Student> {
+    return this._httpClient.post<Student>(
+      `${environment.apiBaseUrl}/students`,
+      student
     );
   }
 
-  deleteStudent(id: number): Observable<Student[]> {
-    if (confirm(`¿Deseas eliminar este estudiante de la lista?`)) {
-      this._httpClient.delete<Student>(
-        `${environment.apiBaseUrl}/students/${id}`
-      );
-    }
-    return this.getStudents();
+  updateStudent(student: Student): Observable<Student> {
+    return this._httpClient.put<Student>(
+      `${environment.apiBaseUrl}/students/${student.id}`,
+      student
+    );
   }
 
-  sortStudents(isSortAZ: boolean, students: Student[]): Observable<Student[]> {
-    const sortedStudents = isSortAZ
+  deleteStudent(id: string): Observable<Student> {
+    return this._httpClient.delete<Student>(
+      `${environment.apiBaseUrl}/students/${id}`
+    );
+  }
+
+  sortStudents(isSortAZ: boolean, students: Student[]): Student[] {
+    return isSortAZ
       ? students.slice().sort((a, b) => a.firstName.localeCompare(b.firstName))
       : students.slice().sort((a, b) => b.firstName.localeCompare(a.firstName));
-
-    return of(sortedStudents);
   }
 }

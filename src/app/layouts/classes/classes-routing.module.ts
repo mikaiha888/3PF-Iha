@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClassesComponent } from './classes.component';
-import { ClassDetailComponent } from './pages/class-detail/class-detail.component';
+import { ClasseDetailComponent } from './pages/classe-detail/classe-detail.component';
 
 const routes: Routes = [
   {
@@ -9,8 +9,8 @@ const routes: Routes = [
     component: ClassesComponent
   },
   {
-    path: ':classId',
-    component: ClassDetailComponent,
+    path: ':courseName/:classeId',
+    component: ClasseDetailComponent,
   },
 ];
 

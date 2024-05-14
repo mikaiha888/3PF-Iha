@@ -9,13 +9,7 @@ import { User } from '../../../core/models';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-
   authUser$: Observable<User | null>;
-
-  constructor(private _auth: AuthService) {
-    this.authUser$ = this._auth.authUser$; 
-  }
-
   navButtons = [
     {
       name: 'Dashboard',
@@ -49,11 +43,15 @@ export class NavbarComponent {
     },
   ];
 
-  logout(): void {
-    confirm('¿Deseas cerrar sesión?');
-    this._auth.logout();
+  constructor(private _auth: AuthService) {
+    this.authUser$ = this._auth.authUser;
   }
 
+  logout(): void {
+    confirm('¿Deseas cerrar sesión?') 
+    && this._auth.logout();
+  }
+  
   isMobile() {
     return window.innerWidth <= 480;
   }

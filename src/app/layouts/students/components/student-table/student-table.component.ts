@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Course, Student } from '../../../../core/models';
+import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { StudentsService } from '../../../../core/services/students.service';
 import { MatDialog } from '@angular/material/dialog';
-import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
-import { CoursesService } from '../../../../core/services/courses.service';
+import { Course, Student } from '../../../../core/models';
 
 @Component({
   selector: 'app-student-table',
@@ -24,33 +23,30 @@ export class StudentTableComponent {
 
   constructor(
     private _students: StudentsService,
-    private _courses: CoursesService,
     private matDialog: MatDialog
   ) {}
 
-  getCourseName(id: number): string {
-    console.log(id);
-    
-    const course = this.courses.find(c => c.id === id) ? this.courses.find(c => c.id === id) : '';
-    return course ? course.name : '';
-  }
- 
   updateStudent(editingStudent: Student): void {
     this.matDialog
       .open(StudentDialogComponent, { data: editingStudent })
       .afterClosed()
       .subscribe({
-        next: (response) => {
-          response.id = editingStudent.id;
-          response.createdAt = editingStudent.createdAt;
-          this._students.updateStudent(editingStudent.id, response).subscribe();
-        },
+        next: (response) =>{
+          response.id = editingStudent.id
+          return this._students.updateStudent(response).subscribe({
+            next: (updatedStudent) =>
+              (this.students = this.students.map((student) =>
+                student.id === updatedStudent.id ? updatedStudent : student
+              )),
+          })}
       });
   }
 
-  deleteStudent(id: number): void {
-    this._students.deleteStudent(id).subscribe((updatedStudents) => {
-      this.students = updatedStudents;
-    });
+  deleteStudent(id: string): void {
+    if (confirm(`¿Deseas eliminar este estudiante de la lista?`)) {
+      this._students.deleteStudent(id).subscribe((deletedStudent) => {
+        this.students = this.students.filter((s) => deletedStudent.id !== s.id);
+      });
+    }
   }
 }

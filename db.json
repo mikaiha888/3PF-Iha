@@ -1,355 +1,153 @@
 {
   "students": [
     {
-      "id": 1,
-      "firstName": "Juan",
-      "lastName": "Perez",
-      "email": "juan@example.com",
-      "courseEnrolled": {
-        "course": {
-          "id": 1,
-          "name": "Full Stack Development",
-          "difficulty": "Beginner",
-          "description": "Aprende a desarrollar software tanto del lado del cliente como del servidor.",
-          "classesId": []
-        },
-        "classe": {
-          "id": 1,
-          "courseId": 1,
-          "classNumber": 101,
-          "day": ["monday", "wednesday", "friday"],
-          "startTime": "09:00",
-          "endTime": "11:00",
-          "startDate": "2024-05-10",
-          "endDate": "2024-06-10",
-          "studentsAttending": [],
-          "adminInCharge": {
-            "id": 1,
-            "firstName": "Admin",
-            "lastName": "One",
-            "email": "admin1@example.com",
-            "password": "admin1",
-            "cel": "123-123-1234",
-            "createdAt": "2024-05-10T10:00:00Z",
-            "role": "ADMIN",
-            "coursesTeaching": []
-          }
-        },
-        "grade": [],
-        "isApproved": null
-      }
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john@example.com",
+      "password": "password123",
+      "cel": "1234567892",
+      "courseName": "Full Stack Development",
+      "classNumber": 101,
+      "isApproved": true,
+      "createdAt": "2024-05-10T12:00:00Z",
+      "id": "1"
     },
     {
-      "id": 2,
-      "firstName": "María",
-      "lastName": "González",
-      "email": "maria@example.com",
-      "courseEnrolled": {
-        "course": {
-          "id": 2,
-          "name": "Frontend Development",
-          "difficulty": "Intermediate",
-          "description": "Enfoque en desarrollar interfaces de usuario y experiencias para la web.",
-          "classesId": []
-        },
-        "classe": {
-          "id": 1,
-          "courseId": 1,
-          "classNumber": 101,
-          "day": ["monday", "wednesday", "friday"],
-          "startTime": "09:00",
-          "endTime": "11:00",
-          "startDate": "2024-05-10",
-          "endDate": "2024-06-10",
-          "studentsAttending": [],
-          "adminInCharge": {
-            "id": 1,
-            "firstName": "Admin",
-            "lastName": "One",
-            "email": "admin1@example.com",
-            "password": "admin1",
-            "cel": "123-123-1234",
-            "createdAt": "2024-05-10T10:00:00Z",
-            "role": "ADMIN",
-            "coursesTeaching": []
-          }
-        },
-        "grade": [85, 90, 75],
-        "isApproved": true
-      }
+      "id": "2",
+      "firstName": "Emily",
+      "lastName": "Johnson",
+      "cel": 987654321,
+      "email": "emily@example.com",
+      "password": "password456",
+      "createdAt": "2024-05-10T12:00:00Z",
+      "role": "Student",
+      "courseName": "Frontend Development",
+      "classNumber": 101,
+      "isApproved": false
     },
     {
-      "id": 3,
-      "firstName": "Pedro",
-      "lastName": "Martínez",
-      "email": "pedro@example.com",
-      "courseEnrolled": {
-        "course": {
-          "id": 3,
-          "name": "Backend Development",
-          "difficulty": "Intermediate",
-          "description": "Aprende a construir y mantener el lado del servidor de aplicaciones web.",
-          "classesId": []
-        },
-        "classe": {
-          "id": 1,
-          "courseId": 1,
-          "classNumber": 101,
-          "day": ["monday", "wednesday", "friday"],
-          "startTime": "09:00",
-          "endTime": "11:00",
-          "startDate": "2024-05-10",
-          "endDate": "2024-06-10",
-          "studentsAttending": [],
-          "adminInCharge": {
-            "id": 1,
-            "firstName": "Admin",
-            "lastName": "One",
-            "email": "admin1@example.com",
-            "password": "admin1",
-            "cel": "123-123-1234",
-            "createdAt": "2024-05-10T10:00:00Z",
-            "role": "ADMIN",
-            "coursesTeaching": []
-          }
-        },
-        "grade": [70, 80, 65],
-        "isApproved": false
-      }
+      "id": "3",
+      "firstName": "Michael",
+      "lastName": "Williams",
+      "cel": 333333333,
+      "email": "michael@example.com",
+      "password": "password123",
+      "createdAt": "2024-05-10T12:00:00Z",
+      "role": "Student",
+      "courseName": "Backend Development",
+      "classNumber": null,
+      "isApproved": null
     },
     {
-      "id": 4,
-      "firstName": "Ana",
-      "lastName": "López",
-      "email": "ana@example.com",
-      "courseEnrolled": {
-        "course": {
-          "id": 1,
-          "name": "Full Stack Development",
-          "difficulty": "Beginner",
-          "description": "Aprende a desarrollar software tanto del lado del cliente como del servidor.",
-          "classesId": []
-        },
-        "classe": {
-          "id": 1,
-          "courseId": 1,
-          "classNumber": 101,
-          "day": ["monday", "wednesday", "friday"],
-          "startTime": "09:00",
-          "endTime": "11:00",
-          "startDate": "2024-05-10",
-          "endDate": "2024-06-10",
-          "studentsAttending": [],
-          "adminInCharge": {
-            "id": 1,
-            "firstName": "Admin",
-            "lastName": "One",
-            "email": "admin1@example.com",
-            "password": "admin1",
-            "cel": "123-123-1234",
-            "createdAt": "2024-05-10T10:00:00Z",
-            "role": "ADMIN",
-            "coursesTeaching": []
-          }
-        },
-        "grade": [95, 88, 92],
-        "isApproved": true
-      }
+      "id": "4",
+      "firstName": "Sarah",
+      "lastName": "Brown",
+      "cel": 444444444,
+      "email": "sarah@example.com",
+      "password": "password456",
+      "createdAt": "2024-05-10T12:00:00Z",
+      "role": "Student",
+      "courseName": "Full Stack Development",
+      "classNumber": 101,
+      "isApproved": true
     },
     {
-      "id": 5,
+      "id": "5",
       "firstName": "David",
-      "lastName": "Sánchez",
+      "lastName": "Jones",
+      "cel": 555555555,
       "email": "david@example.com",
-      "courseEnrolled": {
-        "course": {
-          "id": 2,
-          "name": "Frontend Development",
-          "difficulty": "Intermediate",
-          "description": "Enfoque en desarrollar interfaces de usuario y experiencias para la web.",
-          "classesId": []
-        },
-        "classe": {
-          "id": 1,
-          "courseId": 1,
-          "classNumber": 101,
-          "day": ["monday", "wednesday", "friday"],
-          "startTime": "09:00",
-          "endTime": "11:00",
-          "startDate": "2024-05-10",
-          "endDate": "2024-06-10",
-          "studentsAttending": [],
-          "adminInCharge": {
-            "id": 1,
-            "firstName": "Admin",
-            "lastName": "One",
-            "email": "admin1@example.com",
-            "password": "admin1",
-            "cel": "123-123-1234",
-            "createdAt": "2024-05-10T10:00:00Z",
-            "role": "ADMIN",
-            "coursesTeaching": []
-          }
-        },
-        "grade": [],
-        "isApproved": null
-      }
+      "password": "password789",
+      "createdAt": "2024-05-10T12:00:00Z",
+      "role": "Student",
+      "courseName": "Frontend Development",
+      "classNumber": 101,
+      "isApproved": true
     }
   ],
   "courses": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Full Stack Development",
-      "difficulty": "Beginner",
-      "description": "Aprende a desarrollar software tanto del lado del cliente como del servidor.",
-      "classesId": []
+      "description": "Complete courseName in Full Stack Development",
+      "difficulty": "Intermediate",
+      "classes": [
+        "101"
+      ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Frontend Development",
-      "difficulty": "Intermediate",
-      "description": "Enfoque en desarrollar interfaces de usuario y experiencias para la web.",
-      "classesId": []
-    },
-    {
-      "id": 3,
-      "name": "Backend Development",
-      "difficulty": "Intermediate",
-      "description": "Aprende a construir y mantener el lado del servidor de aplicaciones web.",
-      "classesId": []
-    },
-    {
-      "id": 4,
-      "name": "UX Design",
-      "difficulty": "Advanced",
-      "description": "Enfoque en crear experiencias de usuario intuitivas y atractivas.",
-      "classesId": []
-    },
-    {
-      "id": 5,
-      "name": "Marketing",
+      "description": "Complete course in Frontend Development",
       "difficulty": "Beginner",
-      "description": "Aprende estrategias para promocionar productos o servicios.",
-      "classesId": []
+      "classes": [
+        "101"
+      ]
     },
     {
-      "id": 6,
-      "name": "Data Science",
+      "id": "3",
+      "name": "Backend Development",
+      "description": "Complete course in Backend Development",
+      "difficulty": "Intermediate",
+      "classes": []
+    },
+    {
+      "id": "4",
+      "name": "UX Design",
+      "description": "Complete course in UX Design",
+      "difficulty": "Intermediate",
+      "classes": [
+        "101",
+        "102"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Marketing",
+      "description": "Fundamentals of Marketing",
       "difficulty": "Advanced",
-      "description": "Estudia y analiza grandes conjuntos de datos para extraer información valiosa.",
-      "classesId": []
+      "classes": [
+        "101"
+      ]
     }
   ],
   "classes": [
     {
-      "id": 1,
-      "courseId": 1,
+      "courseName": "Full Stack Development",
       "classNumber": 101,
-      "day": ["monday", "wednesday", "friday"],
+      "day": [
+        "monday",
+        "wednesday",
+        "friday"
+      ],
       "startTime": "09:00",
       "endTime": "11:00",
-      "startDate": "2024-05-10",
-      "endDate": "2024-06-10",
-      "studentsAttending": [],
-      "adminInCharge": {
-        "id": 1,
-        "firstName": "Admin",
-        "lastName": "One",
-        "email": "admin1@example.com",
-        "password": "admin1",
-        "cel": "123-123-1234",
-        "createdAt": "2024-05-10T10:00:00Z",
-        "role": "ADMIN",
-        "coursesTeaching": []
-      }
+      "startDate": "2024-05-15",
+      "endDate": "2024-06-30",
+      "studentsId": [
+        "1",
+        "4"
+      ],
+      "admin": null,
+      "id": "fde8"
     },
     {
-      "id": 2,
-      "courseId": 2,
+      "courseName": "Frontend Development",
       "classNumber": 101,
-      "day": ["tuesday", "thursday"],
-      "startTime": "13:00",
-      "endTime": "15:00",
-      "startDate": "2024-05-11",
-      "endDate": "2024-06-11",
-      "studentsAttending": [],
-      "adminInCharge": {
-        "id": 2,
-        "firstName": "Admin",
-        "lastName": "Two",
-        "email": "admin2@example.com",
-        "password": "admin2",
-        "cel": "234-234-2345",
-        "createdAt": "2024-05-09T09:00:00Z",
-        "role": "ADMIN",
-        "coursesTeaching": []
-      }
-    },
-    {
-      "id": 3,
-      "courseId": 3,
-      "classNumber": 101,
-      "day": ["monday", "wednesday"],
+      "day": [
+        "tuesday",
+        "thursday"
+      ],
       "startTime": "10:00",
       "endTime": "12:00",
-      "startDate": "2024-05-12",
-      "endDate": "2024-06-12",
-      "studentsAttending": [],
-      "adminInCharge": {
-        "id": 3,
-        "firstName": "Admin",
-        "lastName": "Three",
-        "email": "admin3@example.com",
-        "password": "admin3",
-        "cel": "345-345-3456",
-        "createdAt": "2024-05-08T08:00:00Z",
-        "role": "ADMIN",
-        "coursesTeaching": []
-      }
-    },
-    {
-      "id": 4,
-      "courseId": 4,
-      "classNumber": 101,
-      "day": ["tuesday", "thursday"],
-      "startTime": "14:00",
-      "endTime": "16:00",
-      "startDate": "2024-05-13",
-      "endDate": "2024-06-13",
-      "studentsAttending": [],
-      "adminInCharge": {
-        "id": 4,
-        "firstName": "Admin",
-        "lastName": "Four",
-        "email": "admin4@example.com",
-        "password": "admin4",
-        "cel": "456-456-4567",
-        "createdAt": "2024-05-07T07:00:00Z",
-        "role": "ADMIN",
-        "coursesTeaching": []
-      }
-    },
-    {
-      "id": 5,
-      "courseId": 5,
-      "classNumber": 101,
-      "day": ["monday", "wednesday", "friday"],
-      "startTime": "15:00",
-      "endTime": "17:00",
-      "startDate": "2024-05-14",
-      "endDate": "2024-06-14",
-      "studentsAttending": [],
-      "adminInCharge": {
-        "id": 5,
-        "firstName": "Admin",
-        "lastName": "Five",
-        "email": "admin5@example.com",
-        "password": "admin5",
-        "cel": "567-567-5678",
-        "createdAt": "2024-05-06T06:00:00Z",
-        "role": "ADMIN",
-        "coursesTeaching": []
-      }
+      "startDate": "2024-05-16",
+      "endDate": "2024-07-01",
+      "studentsId": [
+        "2",
+        "5"
+      ],
+      "admin": null,
+      "id": "fa0e"
     }
   ]
 }

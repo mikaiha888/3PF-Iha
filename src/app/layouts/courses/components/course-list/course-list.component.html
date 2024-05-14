@@ -1,0 +1,36 @@
+<ul>
+  <li
+    *ngFor="let course of courses"
+    class="courses-list"
+    [routerLink]="course.name.toLowerCase().split(' ').join('-')"
+  >
+    <div class="title-top">
+      <span>{{ course.difficulty }}</span>
+      <mat-icon
+        [matMenuTriggerFor]="menu"
+        class="action-button"
+        (click)="$event.stopPropagation()"
+        >more_horiz</mat-icon
+      >
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editCourse(course)">
+          <mat-icon>edit</mat-icon>
+          <span>Editar curso</span>
+        </button>
+        <button mat-menu-item (click)="deleteCourse(course.id)">
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar curso</span>
+        </button>
+      </mat-menu>
+    </div>
+    <div class="title-bot">
+      <h3>{{ course.name }}</h3>
+      <span [ngClass]="course.difficulty">{{ course.difficulty }}</span>
+    </div>
+    <div class="detail">
+      <p>
+        {{ course.description }}
+      </p>
+    </div>
+  </li>
+</ul>

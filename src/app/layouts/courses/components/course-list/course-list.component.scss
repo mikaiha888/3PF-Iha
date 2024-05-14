@@ -1,0 +1,99 @@
+ul {
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 4%;
+  }
+  
+  ul li {
+    width: 22%;
+    height: 250px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+    border: solid 1px #dee2e6;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+  }
+  
+  .title-top {
+    width: 100%;
+    color: rgb(107 114 128);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .title-top span {
+    font-size: .875rem;
+    line-height: 1rem;
+    flex: 1 1 auto;
+  }
+  
+  .title-bot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .75rem;
+  }
+  
+  .title-bot h3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+  .title-bot span {
+    width: fit-content;
+    font-size: .875rem;
+    line-height: 1rem;
+  }
+  
+  .detail {
+    max-height: 5rem;
+    overflow: hidden;
+  }
+  
+  .detail p {
+    color: rgb(107 114 128);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+  .action-button {
+    width: 2rem;
+    text-align: right;
+  }
+  
+  ul li:hover {
+    border: white;
+    color: white;
+    background-color: rgb(55, 48, 163, 0.95);
+  }
+  
+  ul li:hover .title-bot span {
+    color: black;
+  }
+  
+  ul li:hover .detail p, ul li:hover .title-top {
+    color: white;
+  }
+  
+  .Beginner {
+    background-color: rgb(254 226 226);
+  }
+  
+  .Intermediate {
+    background-color: rgb(237 233 254);
+  }
+  
+  .Advanced {
+    background-color: rgb(220 252 231);
+  }
