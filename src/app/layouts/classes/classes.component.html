@@ -1,16 +1,21 @@
 <app-list-header
   title="Lista de classes"
-  subtitle="(Total: {{ classes.length }} cursos)"
   span="clase"
-  (sort)="sortClasses()"
-  (add)="addClasse()"
+  [display]="false"
+  (add)="createClasse()"
 />
 
 <ul class="class-list">
-    <li *ngFor="let class of classes" [routerLink]="class.id.toString()">
-      <h3>{{ getCourseName(class.courseId) }}</h3>
-      <div>
-        <span>{{ class.classNumber }}</span>
-      </div>
-    </li>
+  <li *ngFor="let classe of classes">
+    <h3>{{ classe.courseName }}</h3>
+    <div
+      [routerLink]="
+        classe.courseName.toLowerCase().split(' ').join('-') +
+        '/' +
+        classe.classNumber
+      "
+    >
+      <span>{{ classe.classNumber }}</span>
+    </div>
+  </li>
 </ul>

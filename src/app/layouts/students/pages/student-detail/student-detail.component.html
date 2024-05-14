@@ -19,7 +19,7 @@
         <button mat-icon-button (click)="student && updateStudent(student)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="student && deleteStudent(student.id)">
+        <button mat-icon-button (click)="student && deleteStudent(studentId)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
@@ -29,22 +29,32 @@
       <div>
         <p>
           <span>Curso:</span
-          ><a [routerLink]="'/courses/' + student?.courseEnrolled?.course?.id">{{
-            student?.courseEnrolled?.course?.id
-          }}</a>
+          ><a
+            [routerLink]="
+              '/courses/' +
+              student?.courseName?.toLowerCase()?.split(' ')?.join('-')
+            "
+            >{{ student?.courseName }}</a
+          >
         </p>
         <p>
           <span>Clase:</span
-          ><a [routerLink]="'/classes/' + student?.courseEnrolled?.classe?.id">{{
-            student?.courseEnrolled?.classe?.id
-          }}</a>
+          ><a
+            [routerLink]="
+              '/classes/' +
+              student?.courseName?.toLowerCase()?.split(' ')?.join('-') +
+              '/' +
+              student?.classNumber
+            "
+            >{{ student?.classNumber }}</a
+          >
         </p>
         <p>
           <span>Estado actual:</span
           >{{
-            student?.courseEnrolled?.isApproved === null
-            ? '---' 
-            : student?.courseEnrolled?.isApproved
+            student?.isApproved === undefined
+              ? "---"
+              : student?.isApproved
               ? "Aprobado"
               : "Desaprobado"
           }}
