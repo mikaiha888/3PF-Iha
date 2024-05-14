@@ -12,12 +12,8 @@ export class CourseDialogComponent implements OnInit {
   courseForm: FormGroup;
   difficulties: CourseDifficulty[] = [
     'Beginner',
-    'Elementary',
-    'Pre-intermediate',
     'Intermediate',
-    'Upper-intermediate',
     'Advanced',
-    'Proficiency',
   ];
 
   constructor(

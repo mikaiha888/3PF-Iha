@@ -29,7 +29,7 @@ export class StudentDetailComponent implements OnInit {
   }
 
   updateStudent(editingStudent: Student): void {
-    this._students.updateStudent(editingStudent).subscribe({
+    this._students.updateStudent(editingStudent.id, editingStudent).subscribe({
       next: (response) => {
         this.student = {
           ...this.student,

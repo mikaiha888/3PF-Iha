@@ -29,22 +29,22 @@
       <div>
         <p>
           <span>Curso:</span
-          ><a [routerLink]="'/courses/' + student?.course?.courseId">{{
-            student?.course?.name
+          ><a [routerLink]="'/courses/' + student?.courseEnrolled?.course?.id">{{
+            student?.courseEnrolled?.course?.id
           }}</a>
         </p>
         <p>
           <span>Clase:</span
-          ><a [routerLink]="'/courses/' + student?.course?.courseId">{{
-            student?.course?.classNumber
+          ><a [routerLink]="'/classes/' + student?.courseEnrolled?.classe?.id">{{
+            student?.courseEnrolled?.classe?.id
           }}</a>
         </p>
         <p>
           <span>Estado actual:</span
           >{{
-            student?.course?.isApproved === null
+            student?.courseEnrolled?.isApproved === null
             ? '---' 
-            : student?.course?.isApproved
+            : student?.courseEnrolled?.isApproved
               ? "Aprobado"
               : "Desaprobado"
           }}

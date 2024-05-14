@@ -12,74 +12,7 @@ export class ClassesService {
     throw new Error('Method not implemented.');
   }
   constructor(private matDialog: MatDialog) {}
-  private classes: Classe[] = [
-    {
-      id: 1,
-      courseId: 1,
-      classNumber: 101,
-      day: ['monday', 'tuesday', 'wednesday'],
-      startTime: '10:00',
-      endTime: '11:00',
-      startDate: new Date('2024-09-01'),
-      endDate: new Date('2024-12-31'),
-      students: [],
-    },
-    {
-      id: 2,
-      courseId: 2,
-      classNumber: 101,
-      day: ['monday', 'wednesday', 'friday'],
-      startTime: '14:00',
-      endTime: '15:00',
-      startDate: new Date('2024-09-01'),
-      endDate: new Date('2024-12-31'),
-      students: [],
-    },
-    {
-      id: 3,
-      courseId: 3,
-      classNumber: 101,
-      day: ['tuesday', 'thursday'],
-      startTime: '13:00',
-      endTime: '14:00',
-      startDate: new Date('2024-09-01'),
-      endDate: new Date('2024-12-31'),
-      students: [],
-    },
-    {
-      id: 4,
-      courseId: 4,
-      classNumber: 101,
-      day: ['monday', 'wednesday'],
-      startTime: '11:00',
-      endTime: '12:00',
-      startDate: new Date('2024-09-01'),
-      endDate: new Date('2024-12-31'),
-      students: [],
-    },
-    {
-      id: 5,
-      courseId: 5,
-      classNumber: 101,
-      day: ['tuesday', 'thursday'],
-      startTime: '15:00',
-      endTime: '16:00',
-      startDate: new Date('2024-09-01'),
-      endDate: new Date('2024-12-31'),
-      students: [],
-    },
-    {
-      id: 6,
-      courseId: 6,
-      classNumber: 101,
-      day: ['monday', 'wednesday'],
-      startTime: '10:00',
-      endTime: '11:00',
-      startDate: new Date('2024-09-01'),
-      endDate: new Date('2024-12-31'),
-      students: [],
-    },
-  ];
+  private classes: Classe[] = []
 
   getClasses(): Observable<Classe[]> {
     return of(this.classes);

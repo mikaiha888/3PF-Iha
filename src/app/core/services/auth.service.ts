@@ -11,10 +11,13 @@ export class AuthService {
   public authUser$ = this.authUser.asObservable();
   MOCK_AUTH_USER: User = {
     id: 1,
-    name: 'John Doe',
-    email: 'john@example.com',
-    password: 'password123',
-    role: 'ADMIN',
+    firstName: "John",
+    lastName: "Doe",
+    email: "john.doe@example.com",
+    password: 'asdsdf',
+    cel: 123-456-7890,
+    createdAt: new Date(),
+    role: "STUDENT",
   }
 
   constructor(private _router: Router) {}

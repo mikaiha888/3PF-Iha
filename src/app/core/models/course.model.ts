@@ -9,19 +9,12 @@ export type CourseName =
   | 'Game Development'
   | 'Cybersecurity';
 
-export type CourseDifficulty =
-  | 'Beginner'
-  | 'Elementary'
-  | 'Pre-intermediate'
-  | 'Intermediate'
-  | 'Upper-intermediate'
-  | 'Advanced'
-  | 'Proficiency'
+export type CourseDifficulty = 'Beginner' | 'Intermediate' | 'Advanced';
 
 export interface Course {
   id: number;
   name: CourseName;
-  difficulty: CourseDifficulty;
   description: string;
+  difficulty: CourseDifficulty;
   classesId: number[];
 }

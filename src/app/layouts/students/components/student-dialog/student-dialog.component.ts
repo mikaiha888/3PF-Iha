@@ -53,21 +53,21 @@ export class StudentDialogComponent implements OnInit {
         ],
       ],
       cel: ['', [Validators.required, Validators.pattern('[0-9 ]{10}')]],
-      course: this.formBuilder.group({
-        name: ['', Validators.required],
-        classNumber: ['', Validators.required],
-        isApproved: [undefined],
-      }),
+      coursesEnrolled: this.formBuilder.group({
+        course: ['', Validators.required],
+        classe: [0, Validators.required],
+        grade: [[]],
+        isApproved: [undefined, Validators.required],
+      })
     });
 
     this.editingStudent &&
       this.studentForm.patchValue({
         ...this.editingStudent,
-        course: {
-          courseId: this.editingStudent.course.courseId,
-          name: this.editingStudent.course.name,
-          classNumber: this.editingStudent.course.classNumber,
-          isApproved: this.editingStudent.course.isApproved,
+        coursesEnrolled: {
+          course: this.editingStudent.courseEnrolled.course.id,
+          classe: this.editingStudent.courseEnrolled.classe.id,
+          isApproved: this.editingStudent.courseEnrolled.isApproved,
         },
       });
   }
@@ -83,28 +83,22 @@ export class StudentDialogComponent implements OnInit {
 
     this.editingStudent &&
       this._classes
-        .getClassesByCourse(this.editingStudent.course.courseId)
+        .getClassesByCourse(this.editingStudent.courseEnrolled.course.id)
         .subscribe({
           next: (classes) => (this.classes = classes),
           complete: () => {},
         });
   }
 
-  onCourseChange() {
+  getClassesByCourse(id: number) {
     if (this.studentForm.get('course')?.value) {
       this.studentForm.get('course')?.get('classNumber')?.enable();
       this.displayHint = false;
-    } else {
-      this.studentForm.get('course')?.get('classNumber')?.disable();
-      this.displayHint = true;
+      this._classes.getClassesByCourse(id).subscribe({
+        next: (classes) => (this.classes = classes),
+        complete: () => {},
+      });
     }
-  }
-
-  getClassesByCourse(id: number) {
-    this._classes.getClassesByCourse(id).subscribe({
-      next: (classes) => (this.classes = classes),
-      complete: () => {},
-    });
   }
 
   onSave() {

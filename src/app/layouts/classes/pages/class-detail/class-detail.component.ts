@@ -42,8 +42,8 @@ export class ClassDetailComponent implements OnInit {
       next: (students) => {
         this.students = students.filter(
           (student) =>
-            student.course.classNumber === this.classe?.classNumber &&
-            student.course.courseId === this.course?.id
+            student.courseEnrolled.classe.id === this.classe?.id &&
+            student.courseEnrolled.course.id === this.course?.id
         );
       },
       error: (error) => console.log(error),

@@ -27,14 +27,13 @@
       </div>
     </aside>
   </mat-drawer>
-
   <div class="container">
     <mat-toolbar>
       <div>
         <button (click)="drawer.toggle()" class="p-2 rounded-pill">
           <mat-icon>menu</mat-icon>
         </button>
-        <h2>Hola {{ (authUser$ | async)?.name }}!</h2>
+        <h2>Hola {{ (authUser$ | async)?.firstName }}!</h2>
       </div>
       <input type="search" placeholder="Search..." class="rounded-pill" />
     </mat-toolbar>

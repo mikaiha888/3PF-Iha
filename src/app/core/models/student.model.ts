@@ -1,18 +1,14 @@
-import { CourseName } from './course.model';
+import { Classe } from "./classes.model";
+import { Course } from "./course.model";
+import { User } from "./user.model";
 
-export type asistingCourse = {
-  courseId: number;
-  name: CourseName;
-  classNumber?: number;
-  isApproved?: boolean;
-};
+export interface CourseEnrolled {
+  course: Course;
+  classe: Classe;
+  grade?: number[];
+  isApproved: boolean | null;
+}
 
-export interface Student {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  cel: number;
-  createdAt: Date;
-  course: asistingCourse;
+export interface Student extends User{
+  courseEnrolled: CourseEnrolled;
 }

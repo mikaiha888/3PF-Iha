@@ -35,7 +35,7 @@
       <ng-container formGroupName="course">
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Seleccionar curso</mat-label>
-          <mat-select formControlName="name" (selectionChange)="onCourseChange()">
+          <mat-select formControlName="name">
             <mat-option *ngFor="let course of courses" [value]="course.name" (click)="getClassesByCourse(course.id)">{{ course.name }}</mat-option>
           </mat-select>
           <mat-error>{{
@@ -53,18 +53,7 @@
             studentForm.get("course")?.get("classNumber")?.errors | studentsFormValidations : "classNumber"
           }}</mat-error>
         </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="col-3">
-          <mat-label>Seleccionar estado</mat-label>
-          <mat-select formControlName="isApproved">
-            <mat-option [value]="'undefined'">Indefinido</mat-option>
-            <mat-option [value]="true">Aprobado</mat-option>
-            <mat-option [value]="false">Desaprobado</mat-option>
-          </mat-select>
-          <mat-error>{{
-            studentForm.get("course")?.get("isApproved")?.errors | studentsFormValidations : "isApproved"
-          }}</mat-error>
-        </mat-form-field>
+
       </ng-container>
 
     </form>
