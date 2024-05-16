@@ -14,10 +14,18 @@ export class CoursesService {
     return this._httpClient.get<Course[]>(`${environment.apiBaseUrl}/courses`);
   }
 
-  getCoursesById(id: number): Observable<Course> {
-    return this._httpClient.get<Course>(`${environment.apiBaseUrl}/courses/${id}`);
+  getCourseById(id: number): Observable<Course> {
+    return this._httpClient.get<Course>(
+      `${environment.apiBaseUrl}/courses/${id}`
+    );
   }
-  
+
+  getCourseByName(courseName: string): Observable<Course | undefined> {
+    return this.getCourses().pipe(
+      map((courses) => courses.find((course) => course.name === courseName))
+    );
+  }
+
   createCourse(course: Course): Observable<Course> {
     return this._httpClient.post<Course>(
       `${environment.apiBaseUrl}/courses`,
@@ -31,7 +39,7 @@ export class CoursesService {
       course
     );
   }
-  
+
   deleteCourse(id: string): Observable<Course> {
     return this._httpClient.delete<Course>(
       `${environment.apiBaseUrl}/courses/${id}`

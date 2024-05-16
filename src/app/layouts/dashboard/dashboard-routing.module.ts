@@ -25,6 +25,11 @@ const routes: Routes = [
     canActivate: [adminGuard],
     loadChildren: () => import('../admins/admins.module').then((m) => m.AdminsModule),
   },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({
