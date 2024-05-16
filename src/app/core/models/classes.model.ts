@@ -1,16 +1,16 @@
-import { Admin, CourseName } from ".";
+import { CourseName } from ".";
 
 export interface Classe {
   id: string;
   courseName: CourseName;
   classNumber: ClassNumber;
-  day: DayOfWeek[];
+  days: DayOfWeek[];
   startTime: TimeFormat;
   endTime: TimeFormat;
   startDate: Date;
   endDate: Date;
   studentsId: string[];
-  admin: Admin;
+  adminId: string;
 }
 
 export type DayOfWeek =

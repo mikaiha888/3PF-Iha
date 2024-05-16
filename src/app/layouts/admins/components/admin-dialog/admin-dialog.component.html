@@ -1,11 +1,11 @@
 <div class="px-5 py-4">
-  <h3 class="mb-5 fs-4 fw-medium">Crear Estudiante</h3>
-  <form class="row" [formGroup]="studentForm">
+  <h3 class="mb-5 fs-4 fw-medium">Crear Administrador</h3>
+  <form class="row" [formGroup]="adminForm">
     <mat-form-field appearance="outline" class="col-6">
       <mat-label>Nombre</mat-label>
       <input matInput formControlName="firstName" />
       <mat-error>{{
-        studentForm.get("firstName")?.errors | studentsFormValidations : "name"
+        adminForm.get("firstName")?.errors | adminsFormValidations : "name"
       }}</mat-error>
     </mat-form-field>
 
@@ -13,7 +13,7 @@
       <mat-label>Apellido</mat-label>
       <input matInput formControlName="lastName" />
       <mat-error>{{
-        studentForm.get("lastName")?.errors | studentsFormValidations : "name"
+        adminForm.get("lastName")?.errors | adminsFormValidations : "name"
       }}</mat-error>
     </mat-form-field>
 
@@ -21,7 +21,7 @@
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" />
       <mat-error>{{
-        studentForm.get("email")?.errors | studentsFormValidations : "email"
+        adminForm.get("email")?.errors | adminsFormValidations : "email"
       }}</mat-error>
     </mat-form-field>
 
@@ -29,7 +29,7 @@
       <mat-label>Cel</mat-label>
       <input matInput formControlName="cel" />
       <mat-error>{{
-        studentForm.get("cel")?.errors | studentsFormValidations : "cel"
+        adminForm.get("cel")?.errors | adminsFormValidations : "cel"
       }}</mat-error>
     </mat-form-field>
 
@@ -37,44 +37,32 @@
       <mat-label>Seleccionar curso</mat-label>
       <mat-select formControlName="courseName">
         <mat-option
-          *ngFor="let courseName of courses"
-          [value]="courseName"
-          (click)="getClassesByCourse(courseName)"
-          >{{ courseName }}</mat-option
+        *ngFor="let courseName of courses"
+        [value]="courseName"
+        (click)="getAvailableClasses(courseName)"
+        >{{ courseName }}</mat-option
         >
+        <mat-option [value]="null" (click)="getAvailableClasses('')">No asignado</mat-option>
       </mat-select>
       <mat-error>{{
-        studentForm.get("courseName")?.errors
-          | studentsFormValidations : "courseName"
+        adminForm.get("courseName")?.errors
+          | adminsFormValidations : "courseName"
       }}</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-3">
-      <mat-label>Seleccionar clase</mat-label>
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Seleccionar clase disponible</mat-label>
       <mat-select formControlName="classNumber">
         <mat-option
-          *ngFor="let classe of classes"
-          [value]="classe.classNumber"
-          >{{ classe.classNumber }}</mat-option
+        *ngFor="let classe of availableClasses"
+        [value]="classe.classNumber"
+        >{{ classe.classNumber }}</mat-option
         >
       </mat-select>
-      <mat-hint *ngIf="!classes.length">{{ displayHint }}</mat-hint>
+      <mat-hint *ngIf="!availableClasses.length">{{ displayHint }}</mat-hint>
       <mat-error>{{
-        studentForm.get("classNumber")?.errors
-          | studentsFormValidations : "classNumber"
-      }}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="col-3">
-      <mat-label>Estado</mat-label>
-      <mat-select formControlName="isApproved">
-        <mat-option [value]="undefined">Indefinido</mat-option>
-        <mat-option [value]="true">Aprobado</mat-option>
-        <mat-option [value]="false">Desaprobado</mat-option>
-      </mat-select>
-      <mat-error>{{
-        studentForm.get("isApproved")?.errors
-          | studentsFormValidations : "isApproved"
+        adminForm.get("classNumber")?.errors
+          | adminsFormValidations : "classNumber"
       }}</mat-error>
     </mat-form-field>
   </form>

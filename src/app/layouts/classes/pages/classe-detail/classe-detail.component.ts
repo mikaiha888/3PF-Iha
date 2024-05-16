@@ -26,7 +26,6 @@ export class ClasseDetailComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    // this._classes.getClasseByData()
   }
 
   updateClasse(editingClasse: Classe): void {

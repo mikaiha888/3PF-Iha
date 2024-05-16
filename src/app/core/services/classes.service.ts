@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Classe } from '../models';
+import { ClassNumber, Classe } from '../models';
 import { environment } from '../../../environments/environment';
 import { Observable, map } from 'rxjs';
 
@@ -8,28 +8,27 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class ClassesService {
+  AllClassNumber: ClassNumber[] = [101, 202, 303, 404, 505, 606, 707, 808, 909];
+
   constructor(private _httpClient: HttpClient) {}
 
   getClasses(): Observable<Classe[]> {
     return this._httpClient.get<Classe[]>(`${environment.apiBaseUrl}/classes`);
   }
 
-  getClassesByCourse(courseName: string): Observable<Classe[]> {
+  getClassesByCourseName(courseName: string): Observable<Classe[]> {
     return this.getClasses().pipe(
-      map((classes) => {
-        return classes.filter((classe) => classe.courseName === courseName);
-      })
+      map((classes) =>
+        classes.filter((classe) => classe.courseName === courseName)
+      )
     );
   }
 
-  getClasseByData(classeData: any): Observable<Classe | undefined> {
-    return this.getClasses().pipe(
+  getAvailableClasses(courseName: string): Observable<number[]> {
+    return this.getClassesByCourseName(courseName).pipe(
       map((classes) => {
-        return classes.find(
-          (classe) =>
-            classe.courseName === classeData.courseName &&
-            classe.classNumber === Number(classeData.classNumber)
-        );
+        const fitleredClasses = classes.map((classe) => classe.classNumber);
+        return this.AllClassNumber.filter((c) => !fitleredClasses.includes(c));
       })
     );
   }

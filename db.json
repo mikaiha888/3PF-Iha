@@ -115,7 +115,7 @@
     {
       "courseName": "Full Stack Development",
       "classNumber": 101,
-      "day": [
+      "days": [
         "monday",
         "wednesday",
         "friday"
@@ -128,13 +128,13 @@
         "1",
         "4"
       ],
-      "admin": null,
+      "adminId": "1",
       "id": "fde8"
     },
     {
       "courseName": "Frontend Development",
       "classNumber": 101,
-      "day": [
+      "days": [
         "tuesday",
         "thursday"
       ],
@@ -146,8 +146,97 @@
         "2",
         "5"
       ],
-      "admin": null,
+      "adminId": "2",
       "id": "fa0e"
+    },
+    {
+      "id": "cd3a",
+      "courseName": "Full Stack Development",
+      "classNumber": 303,
+      "days": [
+        "monday",
+        "wednesday",
+        "friday"
+      ],
+      "startTime": "12:20",
+      "endTime": "14:30",
+      "startDate": "2024-08-16",
+      "endDate": "2024-09-30",
+      "studentsId": [],
+      "adminId": "3"
+    }
+  ],
+  "admins": [
+    {
+      "id": "1",
+      "firstName": "Johny",
+      "lastName": "Do",
+      "cel": 1234567890,
+      "email": "johny.do@example.com",
+      "password": "password123",
+      "createdAt": "2023-05-14T10:00:00Z",
+      "role": "ADMIN",
+      "courseName": "Full Stack Development",
+      "classNumber": 101
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "cel": 2345678901,
+      "email": "jane.smith@example.com",
+      "password": "password123",
+      "createdAt": "2023-05-14T11:00:00Z",
+      "role": "ADMIN",
+      "courseName": "Frontend Development",
+      "classNumber": 101
+    },
+    {
+      "id": "3",
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "cel": 3456789012,
+      "email": "alice.johnson@example.com",
+      "password": "password123",
+      "createdAt": "2023-05-14T12:00:00Z",
+      "role": "ADMIN",
+      "courseName": "Full Stack Development",
+      "classNumber": 303
+    },
+    {
+      "id": "4",
+      "firstName": "Bob",
+      "lastName": "Brown",
+      "cel": 4567890123,
+      "email": "bob.brown@example.com",
+      "password": "password123",
+      "createdAt": "2023-05-14T13:00:00Z",
+      "role": "ADMIN",
+      "courseName": null,
+      "classNumber": null
+    },
+    {
+      "id": "5",
+      "firstName": "Carol",
+      "lastName": "Davis",
+      "cel": 5678901234,
+      "email": "carol.davis@example.com",
+      "password": "password123",
+      "createdAt": "2023-05-14T14:00:00Z",
+      "role": "ADMIN",
+      "courseName": null,
+      "classNumber": null
+    },
+    {
+      "firstName": "María Sol",
+      "lastName": "Iha",
+      "email": "mikaiha888@gmail.com",
+      "password": "asd",
+      "cel": "1231231231",
+      "courseName": "Frontend Development",
+      "classNumber": 101,
+      "createdAt": "2024-05-15T20:58:57.558Z",
+      "id": "0cbe"
     }
   ]
 }

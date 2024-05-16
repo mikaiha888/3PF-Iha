@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ClassesService } from '../../core/services/classes.service';
-import { Classe } from '../../core/models';
+import { Classe, Course } from '../../core/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ClasseDialogComponent } from './components/classe-dialog/classe-dialog.component';
+import { CoursesService } from '../../core/services/courses.service';
 
 @Component({
   selector: 'app-classes',
@@ -11,9 +12,14 @@ import { ClasseDialogComponent } from './components/classe-dialog/classe-dialog.
 })
 export class ClassesComponent {
   classes: Classe[] = [];
+  coursesWithClass: Course[] = [];
   isSortAZ: boolean = true;
 
-  constructor(private _classes: ClassesService, private matDialog: MatDialog) {}
+  constructor(
+    private _classes: ClassesService,
+    private _courses: CoursesService,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this._classes.getClasses().subscribe({
@@ -23,6 +29,9 @@ export class ClassesComponent {
       error: (error) => console.log(error),
       complete: () => {},
     });
+    this._courses.getCourses().subscribe({
+      next: (courses) => this.coursesWithClass = courses.filter(course => course.classes.length)
+    })
   }
 
   createClasse() {

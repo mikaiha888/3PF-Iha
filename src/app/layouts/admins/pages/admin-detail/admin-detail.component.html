@@ -1,0 +1,61 @@
+<div class="detail-page">
+  <div class="detail-base">
+    <div class="detail">
+      <div class="detail-img">
+        <img alt="Admin" />
+      </div>
+      <div class="detail-header">
+        <h2 appHeaderFontSize>
+          {{ admin && ([admin.firstName, admin.lastName] | displayFullname) }}
+        </h2>
+        <span>{{ admin?.email }}</span>
+      </div>
+      <div class="detail-options">
+        <button mat-icon-button disabled>
+          <mat-icon>description</mat-icon>
+        </button>
+        <button mat-icon-button (click)="admin && updateAdmin(admin)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="admin && deleteAdmin(adminId)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="personal-information">
+      <h2 appHeaderFontSize>Información Personal</h2>
+      <div>
+        <p>
+          <span>Curso:</span>
+          <a
+            *ngIf="admin?.courseName"
+            [routerLink]="
+              '/courses/' +
+              admin?.courseName?.toLowerCase()?.split(' ')?.join('-')
+            "
+            >{{ admin?.courseName }}</a
+          >
+          <ng-container *ngIf="!admin?.courseName">No asignado</ng-container>
+        </p>
+        <p>
+          <span>Clase:</span
+          ><a
+            *ngIf="admin?.classNumber"
+            [routerLink]="
+              '/classes/' +
+              admin?.courseName?.toLowerCase()?.split(' ')?.join('-') +
+              '/' +
+              admin?.classNumber
+            "
+            >{{ admin?.classNumber ? admin?.classNumber : "No asignado" }}</a
+          >
+          <ng-container *ngIf="!admin?.classNumber">No asignado</ng-container>
+        </p>
+      </div>
+      <div>
+        <p><span>Cel:</span>{{ admin?.cel }}</p>
+        <p><span>Fecha de inscripción:</span>{{ admin?.createdAt | date }}</p>
+      </div>
+    </div>
+  </div>
+</div>

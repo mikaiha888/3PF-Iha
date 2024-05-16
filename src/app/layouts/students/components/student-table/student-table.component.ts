@@ -16,7 +16,7 @@ export class StudentTableComponent {
   displayedColumns: string[] = [
     'fullName',
     'email',
-    'coursesEnrrolled',
+    'course',
     'createdAt',
     'actions',
   ];

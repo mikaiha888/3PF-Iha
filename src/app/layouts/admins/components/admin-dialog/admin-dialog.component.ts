@@ -1,17 +1,17 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Classe, Student } from '../../../../core/models';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Admin, Classe } from '../../../../core/models';
 import { ClassesService } from '../../../../core/services/classes.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-student-dialog',
-  templateUrl: './student-dialog.component.html',
-  styleUrl: './student-dialog.component.scss',
+  selector: 'app-admin-dialog',
+  templateUrl: './admin-dialog.component.html',
+  styleUrl: './admin-dialog.component.scss',
 })
-export class StudentDialogComponent {
-  studentForm: FormGroup;
-  editingStudent?: Student;
+export class AdminDialogComponent {
+  adminForm: FormGroup;
+  editingAdmin?: Admin;
   optionSelected: string = '';
   displayHint: string = '';
   courses = [
@@ -21,18 +21,17 @@ export class StudentDialogComponent {
     'UX Design',
     'Marketing',
   ];
-  classes: Classe[] = [];
+  availableClasses: Classe[] = [];
 
   constructor(
     private _classe: ClassesService,
     private formBuilder: FormBuilder,
-    private matDialogRef: MatDialogRef<StudentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) originalEditingStudent?: Student
+    private matDialogRef: MatDialogRef<AdminDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) originalEditingAdmin?: Admin
   ) {
-    if (originalEditingStudent)
-      this.editingStudent = { ...originalEditingStudent };
+    if (originalEditingAdmin) this.editingAdmin = { ...originalEditingAdmin };
 
-    this.studentForm = this.formBuilder.group({
+    this.adminForm = this.formBuilder.group({
       firstName: [
         '',
         [
@@ -58,43 +57,43 @@ export class StudentDialogComponent {
       ],
       password: ['asd'],
       cel: ['', [Validators.required, Validators.pattern('[0-9 ]{10}')]],
-      courseName: ['', Validators.required],
-      classNumber: [0, Validators.required],
-      isApproved: [undefined],
+      courseName: [null],
+      classNumber: [null, Validators.required],
       createdAt: [new Date()],
     });
 
-    this.editingStudent &&
-      this.studentForm.patchValue({
-        ...this.editingStudent,
+    this.editingAdmin &&
+      this.adminForm.patchValue({
+        ...this.editingAdmin,
       });
   }
 
   ngOnInit(): void {
-    !this.studentForm.get('courseName')?.value &&
-      this.studentForm.get('classNumber')?.disable();
+    !this.adminForm.get('courseName')?.value &&
+      this.adminForm.get('classNumber')?.disable();
     this.displayHint = '*Seleccionar el curso para habilitar el campo de clase';
-    this.editingStudent &&
-      this.getClassesByCourse(this.editingStudent.courseName);
+    this.editingAdmin &&
+      this.editingAdmin.courseName &&
+      this.getAvailableClasses(this.editingAdmin.courseName);
   }
 
-  getClassesByCourse(courseName: string): void {
+  getAvailableClasses(courseName: string): void {
     this._classe.getClassesByCourseName(courseName).subscribe({
       next: (classes) => {
-        this.classes = classes;
+        this.availableClasses = classes;
         if (classes.length) {
-          this.studentForm.get('classNumber')?.enable();
+          this.adminForm.get('classNumber')?.enable();
         } else {
           this.displayHint = '*No hay clases disponibles en este curso';
-          this.studentForm.get('classNumber')?.disable();
+          this.adminForm.get('classNumber')?.disable();
         }
       },
     });
   }
 
   onSave() {
-    this.studentForm.invalid
-      ? this.studentForm.markAllAsTouched()
-      : this.matDialogRef.close(this.studentForm.value);
+    this.adminForm.invalid
+      ? this.adminForm.markAllAsTouched()
+      : this.matDialogRef.close(this.adminForm.value);
   }
 }

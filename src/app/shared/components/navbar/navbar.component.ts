@@ -36,10 +36,10 @@ export class NavbarComponent {
       link: '/students',
     },
     {
-      name: 'Inscripciones',
-      iconName: 'list_alt_add',
+      name: 'Administradores',
+      iconName: 'shield_icon',
       alert: false,
-      link: '/inscriptions',
+      link: '/admins',
     },
   ];
 

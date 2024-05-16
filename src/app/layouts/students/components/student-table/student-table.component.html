@@ -13,7 +13,7 @@
     <th mat-header-cell *matHeaderCellDef class="sm-cell">Fecha</th>
     <td mat-cell *matCellDef="let student">{{ student.createdAt | date }}</td>
   </ng-container>
-  <ng-container matColumnDef="coursesEnrrolled">
+  <ng-container matColumnDef="course">
     <th mat-header-cell *matHeaderCellDef class="lg-cell">Cursos</th>
     <td mat-cell *matCellDef="let student">
       <span
@@ -21,7 +21,7 @@
           student.courseName
             ? student.courseName.toLowerCase().split(' ').join('-')
             : '',
-          'coursesEnrrolled'
+          'course'
         ]"
       >
         {{ student.courseName }}

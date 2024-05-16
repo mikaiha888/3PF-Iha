@@ -1,1 +1,97 @@
-<p>classe-dialog works!</p>
+<div class="px-5 py-4">
+  <h3 class="mb-5 fs-4 fw-medium">Crear Estudiante</h3>
+  <form class="row" [formGroup]="classeForm">
+    <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Seleccionar curso</mat-label>
+        <mat-select formControlName="courseName">
+            <mat-option
+            *ngFor="let course of courses"
+            [value]="course.name"
+            (click)="getAvailableClasses(course.name)"
+            >{{ course.name }}</mat-option
+            >
+        </mat-select>
+        <mat-error>{{
+            classeForm.get("courseName")?.errors
+            | classesFormValidations : "courseName"
+        }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Seleccionar clase</mat-label>
+      <mat-select formControlName="classNumber">
+        <mat-option
+          *ngFor="let classe of availableClassNumbers"
+          [value]="classe"
+          >{{ classe }}</mat-option
+        >
+      </mat-select>
+      <mat-error>{{
+        classeForm.get("classNumber")?.errors
+          | classesFormValidations : "classNumber"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Días de cursada</mat-label>
+      <mat-select formControlName="days" multiple>
+        <mat-option
+          *ngFor="let day of daysOfWeek"
+          [value]="day"
+          >{{ day }}</mat-option
+        >
+      </mat-select>
+      <mat-error>{{
+        classeForm.get("days")?.errors
+          | classesFormValidations : "days"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Hora de comienzo</mat-label>
+      <input matInput type="time" formControlName="startTime">
+      <mat-error>{{
+        classeForm.get("startTime")?.errors
+          | classesFormValidations : "time"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Hora de finalización</mat-label>
+      <input matInput type="time" formControlName="endTime">
+      <mat-error>{{
+        classeForm.get("endTime")?.errors
+          | classesFormValidations : "time"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Fecha de comienzo</mat-label>
+      <input matInput type="date" formControlName="startDate">
+      <mat-error>{{
+        classeForm.get("startDate")?.errors
+          | classesFormValidations : "date"
+      }}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Fecha de finalización</mat-label>
+      <input matInput type="date" formControlName="endDate">
+      <mat-error>{{
+        classeForm.get("endDate")?.errors
+          | classesFormValidations : "date"
+      }}</mat-error>
+    </mat-form-field>
+  </form>
+  <div
+    mat-dialog-actions
+    class="pt-5 mt-2 border-top d-flex justify-content-end gap-2"
+  >
+    <button class="rounded-2 fs-6 fw-medium cancel-button" mat-dialog-close>
+      Cancelar
+    </button>
+    <button class="rounded-2 fs-6 fw-medium save-button" (click)="onSave()">
+      Guardar
+    </button>
+  </div>
+</div>

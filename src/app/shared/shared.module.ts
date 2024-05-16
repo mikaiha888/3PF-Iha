@@ -19,8 +19,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AdminsFormValidationsPipe } from './pipes/admins-form-validations.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     StudentsFormValidationsPipe,
     CoursesFormValidationsPipe,
     ClassesFormValidationsPipe,
+    AdminsFormValidationsPipe,
   ],
   imports: [
     CommonModule,
@@ -43,12 +46,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   ],
   exports: [
     NavbarComponent,
+    ReactiveFormsModule,
     ListHeaderComponent,
-    HeaderFontSizeDirective,
     DisplayFullnamePipe,
     StudentsFormValidationsPipe,
     CoursesFormValidationsPipe,
     ClassesFormValidationsPipe,
+    AdminsFormValidationsPipe,
+    HeaderFontSizeDirective,
     MatMenuModule,
     MatTableModule,
     MatIconModule,
@@ -56,7 +61,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSelectModule,
     MatButtonModule,
     MatDialogModule,
-    ReactiveFormsModule,
+    MatStepperModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
   ],

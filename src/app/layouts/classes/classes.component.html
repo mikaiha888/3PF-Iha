@@ -6,9 +6,10 @@
 />
 
 <ul class="class-list">
-  <li *ngFor="let classe of classes">
-    <h3>{{ classe.courseName }}</h3>
+  <li *ngFor="let course of coursesWithClass">
+    <h3>{{ course.name }}</h3>
     <div
+      *ngFor="let classe of classes"
       [routerLink]="
         classe.courseName.toLowerCase().split(' ').join('-') +
         '/' +
