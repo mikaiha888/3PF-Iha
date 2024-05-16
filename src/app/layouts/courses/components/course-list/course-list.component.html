@@ -7,6 +7,7 @@
     <div class="title-top">
       <span>{{ course.difficulty }}</span>
       <mat-icon
+        *ngIf="(authUser$ | async)?.role === 'ADMIN'"
         [matMenuTriggerFor]="menu"
         class="action-button"
         (click)="$event.stopPropagation()"

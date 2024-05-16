@@ -12,7 +12,7 @@ import { CoursesService } from '../../core/services/courses.service';
 })
 export class ClassesComponent {
   classes: Classe[] = [];
-  coursesWithClass: Course[] = [];
+  courses: Course[] = [];
   isSortAZ: boolean = true;
 
   constructor(
@@ -23,15 +23,11 @@ export class ClassesComponent {
 
   ngOnInit(): void {
     this._classes.getClasses().subscribe({
-      next: (classes) => {
-        this.classes = classes;
-      },
-      error: (error) => console.log(error),
-      complete: () => {},
+      next: (classes) => this.classes = classes,
     });
     this._courses.getCourses().subscribe({
-      next: (courses) => this.coursesWithClass = courses.filter(course => course.classes.length)
-    })
+      next: (courses) => this.courses = courses,
+    });
   }
 
   createClasse() {
@@ -41,18 +37,14 @@ export class ClassesComponent {
       .subscribe({
         next: (classe) => {
           classe &&
-            this._classes.createClasse(classe).subscribe({
-              next: (c) => (this.classes = [...this.classes, c]),
-            });
+            this._classes.createClasse(classe).subscribe();
         },
       });
   }
 
   deleteClasse(id: string): void {
     if (confirm(`¿Deseas eliminar esta clase de la lista?`)) {
-      this._classes.deleteClasse(id).subscribe((deletedClasse) => {
-        this.classes = this.classes.filter((s) => deletedClasse.id !== s.id);
-      });
+      this._classes.deleteClasse(id).subscribe();
     }
   }
 }

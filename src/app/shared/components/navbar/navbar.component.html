@@ -1,18 +1,18 @@
-<mat-drawer-container class="bg-white" >
-    <mat-drawer
-      #drawer
-      [mode]="isMobile() ? 'over' : 'side'"
-      [opened]="!isMobile()"
-      class="mat-drawer shadow-sm"
-    >
-      <aside>
-        <header>
-          <h1 appHeaderFontSize><span>Student</span>Log</h1>
-        </header>
-        <nav class="px-3">
-          <ul>
+<mat-drawer-container class="bg-white">
+  <mat-drawer
+    #drawer
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isMobile()"
+    class="mat-drawer shadow-sm"
+  >
+    <aside>
+      <header>
+        <h1 appHeaderFontSize><span>Student</span>Log</h1>
+      </header>
+      <nav class="px-3">
+        <ul>
+          <ng-container *ngFor="let navButton of navButtons">
             <li
-              *ngFor="let navButton of navButtons"
               [routerLink]="navButton.link"
               routerLinkActive="active"
             >
@@ -20,26 +20,34 @@
               <span>{{ navButton.name }}</span>
               <div *ngIf="navButton.alert" class="rounded-pill"></div>
             </li>
-          </ul>
-        </nav>
-        <div class="logout">
-          <button (click)="logout()">Log Out</button>
-        </div>
-      </aside>
-    </mat-drawer>
-    <div class="container">
-      <mat-toolbar>
-        <div>
-          <button (click)="drawer.toggle()" class="p-2 rounded-pill">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <h2>Hola {{ (authUser$ | async)?.firstName }}!</h2>
-        </div>
-        <input type="search" placeholder="Search..." class="rounded-pill" />
-      </mat-toolbar>
-      <main>
-        <ng-content></ng-content>
-      </main>
-    </div>
-  </mat-drawer-container>
-  
+          </ng-container>
+          <li
+          *ngIf="(authUser$ | async)?.role === 'ADMIN'"
+          routerLink="/admins"
+          routerLinkActive="active"
+          >
+            <mat-icon>shield_icon</mat-icon>
+            <span>Administradores</span>
+          </li>
+        </ul>
+      </nav>
+      <div class="logout">
+        <button (click)="logout()">Log Out</button>
+      </div>
+    </aside>
+  </mat-drawer>
+  <div class="container">
+    <mat-toolbar>
+      <div>
+        <button (click)="drawer.toggle()" class="p-2 rounded-pill">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h2>Hola {{ (authUser$ | async)?.firstName }}!</h2>
+      </div>
+      <input type="search" placeholder="Search..." class="rounded-pill" />
+    </mat-toolbar>
+    <main>
+      <ng-content></ng-content>
+    </main>
+  </div>
+</mat-drawer-container>

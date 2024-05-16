@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../../../core/models';
 
 @Component({
   selector: 'app-list-header',
@@ -12,7 +15,12 @@ export class ListHeaderComponent {
   @Input() display: boolean = true;
   @Output() sort = new EventEmitter;
   @Output() add = new EventEmitter;
+  authUser$: Observable<User | null>;
   isSortAZ: boolean = true;
+  
+  constructor(private _auth: AuthService) {
+    this.authUser$ = this._auth.authUser;
+  }
 
   sorting() {
     this.isSortAZ = !this.isSortAZ

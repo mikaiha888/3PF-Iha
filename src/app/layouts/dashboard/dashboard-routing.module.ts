@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { adminGuard } from '../../core/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -21,12 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'admins',
+    canActivate: [adminGuard],
     loadChildren: () => import('../admins/admins.module').then((m) => m.AdminsModule),
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'dashboard'
   },
 ];
 

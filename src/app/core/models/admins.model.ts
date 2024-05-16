@@ -1,6 +1,6 @@
-import { User, CourseName, ClassNumber } from ".";
+import { User, CourseName, ClassNumber } from '.';
 
-export interface Admin extends User{
-    courseName: CourseName | null;
-    classNumber: ClassNumber | null
-  }
+export interface Admin extends User {
+  courseName: CourseName | null;
+  classNumber: ClassNumber | null;
+}

@@ -16,32 +16,31 @@ export class NavbarComponent {
       iconName: 'dashboard',
       alert: false,
       link: '/dashboard',
+      isAdminButton: false
     },
     {
       name: 'Cursos',
       iconName: 'school',
       alert: false,
       link: '/courses',
+      isAdminButton: false
     },
     {
       name: 'Clases',
       iconName: 'airplay',
       alert: false,
       link: '/classes',
+      isAdminButton: false
     },
     {
       name: 'Alumnos',
       iconName: 'group',
       alert: true,
       link: '/students',
-    },
-    {
-      name: 'Administradores',
-      iconName: 'shield_icon',
-      alert: false,
-      link: '/admins',
-    },
+      isAdminButton: false
+    }
   ];
+
 
   constructor(private _auth: AuthService) {
     this.authUser$ = this._auth.authUser;

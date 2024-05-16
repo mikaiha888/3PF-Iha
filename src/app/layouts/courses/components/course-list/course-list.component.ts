@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Course } from '../../../../core/models';
+import { Course, User } from '../../../../core/models';
 import { CoursesService } from '../../../../core/services/courses.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
@@ -11,8 +13,15 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 })
 export class CourseListComponent {
   @Input() courses: any[] = [];
+  authUser$: Observable<User | null>;
 
-  constructor(private _courses: CoursesService, private matDialog: MatDialog) {}
+  constructor(
+    private _courses: CoursesService,
+    private _auth: AuthService,
+    private matDialog: MatDialog
+  ) {
+    this.authUser$ = this._auth.authUser;
+  }
 
   editCourse(editingCourse: Course) {
     this.matDialog
@@ -20,13 +29,14 @@ export class CourseListComponent {
       .afterClosed()
       .subscribe({
         next: (response) => {
-          response.id = editingCourse.id
+          response.id = editingCourse.id;
           this._courses.updateCourse(response).subscribe({
             next: (updatedCourse) =>
               (this.courses = this.courses.map((course) =>
                 course.id === updatedCourse.id ? updatedCourse : course
               )),
-          })},
+          });
+        },
       });
   }
 

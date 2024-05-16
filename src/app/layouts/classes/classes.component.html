@@ -1,22 +1,22 @@
 <app-list-header
-  title="Lista de classes"
+  title="Lista de courses"
   span="clase"
   [display]="false"
   (add)="createClasse()"
 />
 
 <ul class="class-list">
-  <li *ngFor="let course of coursesWithClass">
-    <h3>{{ course.name }}</h3>
-    <div
-      *ngFor="let classe of classes"
-      [routerLink]="
-        classe.courseName.toLowerCase().split(' ').join('-') +
-        '/' +
-        classe.classNumber
-      "
-    >
-      <span>{{ classe.classNumber }}</span>
-    </div>
+  <li *ngFor="let course of courses">
+    <ng-container *ngIf="course.classes.length">
+      <h3>{{ course.name }}</h3>
+      <div
+        *ngFor="let classe of course.classes"
+        [routerLink]="
+          course.name.toLowerCase().split(' ').join('-') + '/' + classe
+        "
+      >
+        <span>{{ classe }}</span>
+      </div>
+    </ng-container>
   </li>
 </ul>

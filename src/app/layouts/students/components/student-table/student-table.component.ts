@@ -2,7 +2,9 @@ import { Component, Input } from '@angular/core';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { StudentsService } from '../../../../core/services/students.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Course, Student } from '../../../../core/models';
+import { Course, Student, User } from '../../../../core/models';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-student-table',
@@ -13,6 +15,7 @@ export class StudentTableComponent {
   @Input() students: Student[] = [];
   @Input() courses: Course[] = [];
 
+  authUser$: Observable<User | null>;
   displayedColumns: string[] = [
     'fullName',
     'email',
@@ -23,8 +26,11 @@ export class StudentTableComponent {
 
   constructor(
     private _students: StudentsService,
+    private _auth: AuthService,
     private matDialog: MatDialog
-  ) {}
+  ) {
+    this.authUser$ = this._auth.authUser;
+  }
 
   updateStudent(editingStudent: Student): void {
     this.matDialog

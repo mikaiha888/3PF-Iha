@@ -30,13 +30,13 @@
     </ng-container>
     <ng-container matColumnDef="actions" class="text-center">
       <th mat-header-cell *matHeaderCellDef class="sm-cell" ngClass="td-class">
-        Acciones
+        Más
       </th>
       <td mat-cell *matCellDef="let admin" class="td-class">
         <mat-icon [routerLink]="'/admins/' + admin.id" class="view-detail"
           >read_more</mat-icon
         >
-        <mat-icon [matMenuTriggerFor]="menu" class="action-button"
+        <mat-icon *ngIf="(authUser$ | async)?.role === 'ADMIN'" [matMenuTriggerFor]="menu" class="action-button"
           >more_vert</mat-icon
         >
         <mat-menu #menu="matMenu">

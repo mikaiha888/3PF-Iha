@@ -10,6 +10,7 @@
       "classNumber": 101,
       "isApproved": true,
       "createdAt": "2024-05-10T12:00:00Z",
+      "role": "STUDENT",
       "id": "1"
     },
     {
@@ -20,7 +21,7 @@
       "email": "emily@example.com",
       "password": "password456",
       "createdAt": "2024-05-10T12:00:00Z",
-      "role": "Student",
+      "role": "STUDENT",
       "courseName": "Frontend Development",
       "classNumber": 101,
       "isApproved": false
@@ -33,9 +34,9 @@
       "email": "michael@example.com",
       "password": "password123",
       "createdAt": "2024-05-10T12:00:00Z",
-      "role": "Student",
+      "role": "STUDENT",
       "courseName": "Backend Development",
-      "classNumber": null,
+      "classNumber": 101,
       "isApproved": null
     },
     {
@@ -46,7 +47,7 @@
       "email": "sarah@example.com",
       "password": "password456",
       "createdAt": "2024-05-10T12:00:00Z",
-      "role": "Student",
+      "role": "STUDENT",
       "courseName": "Full Stack Development",
       "classNumber": 101,
       "isApproved": true
@@ -59,7 +60,7 @@
       "email": "david@example.com",
       "password": "password789",
       "createdAt": "2024-05-10T12:00:00Z",
-      "role": "Student",
+      "role": "STUDENT",
       "courseName": "Frontend Development",
       "classNumber": 101,
       "isApproved": true
@@ -71,99 +72,95 @@
       "name": "Full Stack Development",
       "description": "Complete courseName in Full Stack Development",
       "difficulty": "Intermediate",
-      "classes": [
-        "101"
-      ]
+      "classes": [101]
     },
     {
       "id": "2",
       "name": "Frontend Development",
       "description": "Complete course in Frontend Development",
       "difficulty": "Beginner",
-      "classes": [
-        "101"
-      ]
+      "classes": [101]
     },
     {
       "id": "3",
       "name": "Backend Development",
       "description": "Complete course in Backend Development",
       "difficulty": "Intermediate",
-      "classes": []
+      "classes": [101]
     },
     {
       "id": "4",
       "name": "UX Design",
       "description": "Complete course in UX Design",
       "difficulty": "Intermediate",
-      "classes": [
-        "101",
-        "102"
-      ]
+      "classes": [101]
     },
     {
       "id": "5",
       "name": "Marketing",
       "description": "Fundamentals of Marketing",
       "difficulty": "Advanced",
-      "classes": [
-        "101"
-      ]
+      "classes": [101]
     }
   ],
   "classes": [
     {
       "courseName": "Full Stack Development",
       "classNumber": 101,
-      "days": [
-        "monday",
-        "wednesday",
-        "friday"
-      ],
+      "days": ["monday", "wednesday", "friday"],
       "startTime": "09:00",
       "endTime": "11:00",
       "startDate": "2024-05-15",
       "endDate": "2024-06-30",
-      "studentsId": [
-        "1",
-        "4"
-      ],
+      "studentsId": ["1", "4"],
       "adminId": "1",
       "id": "fde8"
     },
     {
       "courseName": "Frontend Development",
       "classNumber": 101,
-      "days": [
-        "tuesday",
-        "thursday"
-      ],
+      "days": ["tuesday", "thursday"],
       "startTime": "10:00",
       "endTime": "12:00",
       "startDate": "2024-05-16",
       "endDate": "2024-07-01",
-      "studentsId": [
-        "2",
-        "5"
-      ],
+      "studentsId": ["2", "5"],
       "adminId": "2",
       "id": "fa0e"
     },
     {
       "id": "cd3a",
-      "courseName": "Full Stack Development",
-      "classNumber": 303,
-      "days": [
-        "monday",
-        "wednesday",
-        "friday"
-      ],
+      "courseName": "Backend Development",
+      "classNumber": 101,
+      "days": ["monday", "wednesday", "friday"],
       "startTime": "12:20",
       "endTime": "14:30",
       "startDate": "2024-08-16",
       "endDate": "2024-09-30",
       "studentsId": [],
       "adminId": "3"
+    },
+    {
+      "courseName": "UX Design",
+      "classNumber": 101,
+      "days": ["monday", "wednesday", "friday"],
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "startDate": "2024-07-01",
+      "endDate": "2024-08-15",
+      "studentsId": [],
+      "adminId": "4"
+    },
+    {
+      "courseName": "Marketing",
+      "classNumber": 101,
+      "days": ["tuesday", "thursday"],
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "startDate": "2024-07-02",
+      "endDate": "2024-08-16",
+      "studentsId": [],
+      "adminId": "5"
     }
   ],
   "admins": [
@@ -200,8 +197,8 @@
       "password": "password123",
       "createdAt": "2023-05-14T12:00:00Z",
       "role": "ADMIN",
-      "courseName": "Full Stack Development",
-      "classNumber": 303
+      "courseName": "Backend Development",
+      "classNumber": 101
     },
     {
       "id": "4",
@@ -212,8 +209,8 @@
       "password": "password123",
       "createdAt": "2023-05-14T13:00:00Z",
       "role": "ADMIN",
-      "courseName": null,
-      "classNumber": null
+      "courseName": "UX Design",
+      "classNumber": 101
     },
     {
       "id": "5",
@@ -224,19 +221,21 @@
       "password": "password123",
       "createdAt": "2023-05-14T14:00:00Z",
       "role": "ADMIN",
-      "courseName": null,
-      "classNumber": null
+      "courseName": "Marketing",
+      "classNumber": 101
     },
     {
       "firstName": "María Sol",
       "lastName": "Iha",
-      "email": "mikaiha888@gmail.com",
+      "email": "asd@asd.com",
       "password": "asd",
       "cel": "1231231231",
-      "courseName": "Frontend Development",
-      "classNumber": 101,
+      "courseName": null,
+      "classNumber": null,
+      "role": "ADMIN",
       "createdAt": "2024-05-15T20:58:57.558Z",
       "id": "0cbe"
     }
   ]
+  
 }
