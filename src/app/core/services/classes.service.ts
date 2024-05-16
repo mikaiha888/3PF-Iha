@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ClassNumber, Classe } from '../models';
+import { ClassNumber, Classe, CourseName } from '../models';
 import { environment } from '../../../environments/environment';
 import { Observable, map } from 'rxjs';
 
@@ -14,6 +14,19 @@ export class ClassesService {
 
   getClasses(): Observable<Classe[]> {
     return this._httpClient.get<Classe[]>(`${environment.apiBaseUrl}/classes`);
+  }
+
+  getClasse(
+    courseName: string,
+    classNumber: number
+  ): Observable<Classe | undefined> {
+    return this.getClasses().pipe(
+      map((classes) =>
+        classes.find(
+          (c) => c.classNumber === classNumber && c.courseName === courseName
+        )
+      )
+    );
   }
 
   getClassesByCourseName(courseName: string): Observable<Classe[]> {

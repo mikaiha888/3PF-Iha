@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Classe } from '../../../../core/models';
+import { Classe, User } from '../../../../core/models';
 import { ClassesService } from '../../../../core/services/classes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ClasseDialogComponent } from '../../components/classe-dialog/classe-dialog.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-classe-detail',
@@ -12,21 +14,25 @@ import { Router } from '@angular/router';
 })
 export class ClasseDetailComponent implements OnInit {
   classe?: Classe;
-  classeData = {
-    courseName: '',
-    classNumber: ''
-  };
+  courseName?: string;
+  classNumber?: number;
+  authUser$: Observable<User | null>;
 
   constructor(
     private _classes: ClassesService,
+    private _auth: AuthService,
     private _router: Router,
+    private _activatedRoute: ActivatedRoute,
     private matDialog: MatDialog
   ) {
-    this.classeData.courseName = this._router.url
+    this.authUser$ = this._auth.authUser;
+    this.courseName = this.capitalizeCourseName(this._router.url);
+    this.classNumber = Number(this._router.url.split('/')[3])
+
+    this._classes.getClasse(this.courseName, this.classNumber).subscribe({next: (classe) => this.classe = classe})
   }
-  
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void {}
 
   updateClasse(editingClasse: Classe): void {
     this.matDialog
@@ -35,10 +41,29 @@ export class ClasseDetailComponent implements OnInit {
       .subscribe({
         next: (response) => {
           response.id = editingClasse.id;
-          this._classes.updateClasse(response).subscribe({
-            next: (updatedClasse) => (this.classe = updatedClasse),
+          return this._classes.updateClasse(response).subscribe({
+            next: (updatedClasse) =>
+              this.classe && this.classe.id === updatedClasse.id
+                ? updatedClasse
+                : this.classe,
           });
         },
       });
+  }
+
+  deleteClasse(id: string): void {
+    if (confirm(`¿Deseas eliminar este estudiante de la lista?`)) {
+      this._classes
+        .deleteClasse(id)
+        .subscribe(() => this._router.navigate(['classes']));
+    }
+  }
+
+  capitalizeCourseName(str: string): string {
+    return str
+      .split('/')[2]
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   }
 }

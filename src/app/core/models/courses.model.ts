@@ -1,9 +1,11 @@
+import { ClassNumber } from "./classes.model";
+
 export interface Course {
   id: string;
   name: CourseName;
   description: string;
   difficulty: CourseDifficulty;
-  classes: number[];
+  classes: ClassNumber[];
 }
 
 export type CourseName =

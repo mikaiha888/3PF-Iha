@@ -1,14 +1,19 @@
 <div class="detail-page">
   <div class="detail-base">
     <div class="detail">
-      <div class="detail-img">
-        <img alt="Course" />
-      </div>
       <div class="detail-header">
         <h2 appHeaderFontSize>
           {{ course?.name }}
         </h2>
-        <span>{{ course?.difficulty }}</span>
+        <span class="difficulty">{{ course?.difficulty }}</span>
+        <p>{{ course?.description }}</p>
+        <div
+          class="class-list"
+          *ngFor="let classe of course?.classes"
+          [routerLink]="classe.toString()"
+        >
+          <span>{{ classe }}</span>
+        </div>
       </div>
       <div *ngIf="(authUser$ | async)?.role === 'ADMIN'" class="detail-options">
         <button mat-icon-button disabled>

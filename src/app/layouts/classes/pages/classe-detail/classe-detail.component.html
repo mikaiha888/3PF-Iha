@@ -1,1 +1,27 @@
-<p>classe-detail works!</p>
+<div class="detail-page">
+  <div class="detail-base">
+    <div class="detail">
+      <div class="detail-header">
+        <h2 appHeaderFontSize>
+          {{ classe?.classNumber }}
+        </h2>
+        <span class="difficulty">{{ classe?.courseName }}</span>
+        <div
+          class="class-list"
+        >
+        </div>
+      </div>
+      <div *ngIf="(authUser$ | async)?.role === 'ADMIN'" class="detail-options">
+        <button mat-icon-button disabled>
+          <mat-icon>description</mat-icon>
+        </button>
+        <button mat-icon-button (click)="classe && updateClasse(classe)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="classe && deleteClasse(classe.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
