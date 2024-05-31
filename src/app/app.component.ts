@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = '07-3PF-Iha';
   displayNavBar: boolean = false;
 
   constructor(private _router: Router) {
